@@ -1,0 +1,38 @@
+.container {
+  margin-top: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+}
+.form {
+  border: 1px blue solid;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  width: 100%;
+  height: 100%;
+}
+.input > input{
+  padding: 20px 40px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+.formSubmit {
+  padding: 20px 40px;
+  background-color: green;
+  border: white 1px solid;
+  outline: none;
+  color: white;
+}

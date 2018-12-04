@@ -1,5 +1,10 @@
 import React from 'react';
+import styles from './header.css';
 
 export default () => (
-  <div>Header</div>
+  <div
+    className={styles.header}
+  >
+    Header
+  </div>
 );
