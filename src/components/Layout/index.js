@@ -1,11 +1,12 @@
 import React from 'react';
+import Header from 'containers/Header';
 
 const Layout = ({
   children,
 }) => (
   <div>
     {children}
-    <p>{'Layout'}</p>
+    <Header />
   </div>
 );
 

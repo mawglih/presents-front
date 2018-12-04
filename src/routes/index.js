@@ -4,7 +4,7 @@ import Home from 'components/Home';
 import SignIn from 'containers/User/SignIn';
 import SignUp from 'containers/User/SignUp';
 import Logout from 'containers/User/Logout';
-import Profile from 'containers/Profile';
+import Profile from 'containers/Profle';
 import {
   LOGOUT as LOGOUT_URL,
   SIGN_UP as SIGN_UP_URL,
