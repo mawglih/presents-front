@@ -17,7 +17,7 @@
   height: 300px;
 }
 .form {
-  border: 1px blue solid;
+  border: 1px rgb(10, 49, 31) solid;
   border-radius: 20px;
   padding: 20px;
   margin-top: 50px;
@@ -35,4 +35,9 @@
   border: white 1px solid;
   outline: none;
   color: white;
+  cursor: pointer;
+}
+.formSubmit:hover {
+  transform: scale(1.01);
+  border:2px rgb(10, 49, 31) solid;
 }

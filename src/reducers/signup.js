@@ -1,5 +1,5 @@
 import {
-  SIGNIN_SUCCESS,
+  SIGNUP_SUCCESS,
 } from 'actions';
 const INITIAL_STATE = {
   isAuthenticated: false,
@@ -8,10 +8,10 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch(type) {
-    case SIGNIN_SUCCESS:
+    case SIGNUP_SUCCESS:
       return {
         ...state,
-        payload,
+        user: payload,
       };
     default:
       return state;
