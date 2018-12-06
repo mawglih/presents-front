@@ -36,14 +36,15 @@ export function* signupStartSaga({ payload }) {
       url: URL,
     });
     if (status >= 200 && status < 300) {
-    yield put({
-      type: SIGNUP_SUCCESS,
-      payload: data,
-    });
-    yield console.log('signin saga: ', data)
-  } else {
-    throw data;
-  }
+      console.log('data in axios response signup: ', data);
+      yield put({
+        type: SIGNUP_SUCCESS,
+        payload: data,
+      });
+      yield console.log('signin saga: ', data)
+    } else {
+      throw data;
+    }
   } catch (error) {
     yield put(signupFailure(error));
   }

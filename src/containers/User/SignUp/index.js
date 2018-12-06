@@ -29,7 +29,7 @@ class Signup extends Component {
     const {
       signupStart,
     } = this.props;
-    signupStart(newUser)
+    signupStart(newUser);
     console.log(newUser);
   }
 
@@ -111,7 +111,7 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth:state.signup,
-})
+  auth: state.signup,
+});
 
 export default connect(mapStateToProps, { signupStart })(Signup);

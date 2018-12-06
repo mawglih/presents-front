@@ -1,12 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { signinStart } from 'actions';
 import styles from "./signin.css";
 
 class Signin extends Component {
 
   state = {
-    username: '',
+    email: '',
     password: '',
   };
+
+  componentDidMount() {
+    const {
+      auth,
+      history,
+    } = this.props;
+    if (auth.isAuthenticated) {
+      history.push('/');
+    }
+  } 
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      history,
+    } = this.props;
+    if (nextProps.auth.isAuthenticated) {
+      history.push('/');
+    }
+  }
 
   handleChange = e => {
     this.setState({
@@ -17,9 +38,13 @@ class Signin extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const user = {
-      name: this.state.username,
+      email: this.state.email,
       password: this.state.password
     };
+    const {
+      signinStart,
+    } = this.props;
+    signinStart(user);
     console.log(user);
   }
 
@@ -29,7 +54,7 @@ class Signin extends Component {
       placeholder2,
     } = this.props;
     const {
-      username,
+      email,
       password,
     } = this.state;
     return(
@@ -40,13 +65,13 @@ class Signin extends Component {
             className={styles.form}
           >
             <div className={styles.input}>
-              <label>Username</label>
+              <label>Email</label>
               <input
-                value={username}
+                value={email}
                 type="text"
                 placeholder={placeholder1}
                 onChange={this.handleChange}
-                name="username"
+                name="email"
               />
             </div>
             <div className={styles.input}>
@@ -74,4 +99,8 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+const mapStateToProps = state => ({
+  auth: state.signin,
+});
+
+export default connect(mapStateToProps, { signinStart })(Signin);

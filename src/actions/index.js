@@ -8,21 +8,21 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 export const signinStart = (payload) => {
   console.log('action signin paylod: ', payload);
   return{
-    type:SIGNIN_START,
+    type: SIGNIN_START,
     payload,
   };
 };
 
 export const signinSuccess = ({ payload }) => {
   return{
-    type:SIGNIN_SUCCESS,
+    type: SIGNIN_SUCCESS,
     payload,
   };
 };
 
 export const signinFailure = ({ payload }) => {
   return{
-    type:SIGNIN_FAILURE,
+    type: SIGNIN_FAILURE,
     error: payload,
   };
 };
@@ -30,21 +30,21 @@ export const signinFailure = ({ payload }) => {
 export const signupStart = (payload) => {
   console.log('action signup paylod: ', payload);
   return{
-    type:SIGNUP_START,
+    type: SIGNUP_START,
     payload,
   };
 };
 
 export const signupSuccess = ({ payload }) => {
   return{
-    type:SIGNUP_SUCCESS,
+    type: SIGNUP_SUCCESS,
     payload,
   };
 };
 
 export const signupFailure = ({ payload }) => {
   return{
-    type:SIGNUP_FAILURE,
+    type: SIGNUP_FAILURE,
     error: payload,
   };
 };
