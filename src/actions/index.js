@@ -4,6 +4,8 @@ export const SIGNIN_FAILURE = 'SIGNIN_FAILURE';
 export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+export const LOGOUT_START = 'LOGOUT_START';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const signinStart = (payload) => {
   console.log('action signin paylod: ', payload);
@@ -46,5 +48,17 @@ export const signupFailure = ({ payload }) => {
   return{
     type: SIGNUP_FAILURE,
     error: payload,
+  };
+};
+
+export const logoutStart = () => {
+  return {
+    type: LOGOUT_START,
+  };
+};
+
+export const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
   };
 };
