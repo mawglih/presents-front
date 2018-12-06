@@ -52,6 +52,7 @@ export const signupFailure = ({ payload }) => {
 };
 
 export const logoutStart = () => {
+  console.log('logout saga started');
   return {
     type: LOGOUT_START,
   };

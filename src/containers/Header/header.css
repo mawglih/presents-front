@@ -28,3 +28,18 @@
   text-decoration: none;
   cursor: pointer;
 }
+.logout {
+  cursor: pointer;
+}
+.logout >img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+.logout > button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
