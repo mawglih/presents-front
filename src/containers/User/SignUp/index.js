@@ -36,8 +36,9 @@ class Signup extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       history,
+      error
     } = this.props;
-    if (nextProps.user) {
+    if (nextProps.user && error === null) {
       history.push('/signin');
     }
   }
@@ -48,6 +49,7 @@ class Signup extends Component {
       placeholder2,
       placeholder3,
       placeholder4,
+      error,
     } = this.props;
     const {
       username,
@@ -111,6 +113,16 @@ class Signup extends Component {
               </button>
             </div>
           </form>
+          {Object.values(error).length > 0 ? (
+            <ul>
+              {Object.values(error).map(item => {
+                return <li key={encodeURIComponent(item)}>
+                  {item}
+                </li>
+              })}
+            </ul>
+          ) : null
+          }
         </div>
       </div>
     );
@@ -119,6 +131,7 @@ class Signup extends Component {
 
 const mapStateToProps = state => ({
   user: state.signup.user,
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { signupStart })(Signup);

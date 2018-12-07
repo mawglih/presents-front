@@ -52,11 +52,13 @@ class Signin extends Component {
     const {
       placeholder1,
       placeholder2,
+      error,
     } = this.props;
     const {
       email,
       password,
     } = this.state;
+    console.log('sign in component error: ', error);
     return(
       <div className={styles.container}>
         <div className={styles.signin}>
@@ -93,6 +95,16 @@ class Signin extends Component {
               </button>
             </div>
           </form>
+          {Object.values(error).length > 0 ? (
+            <ul>
+              {Object.values(error).map(item => {
+                return <li key={encodeURIComponent(item)}>
+                  {item}
+                </li>
+              })}
+            </ul>
+          ) : null
+          }      
         </div>
       </div>
     );
@@ -101,6 +113,7 @@ class Signin extends Component {
 
 const mapStateToProps = state => ({
   auth: state.signin,
+  error: state.error,
 });
 
 export default connect(mapStateToProps, { signinStart })(Signin);

@@ -10,12 +10,12 @@ export default (state = INITIAL_STATE, {type, payload}) => {
     case SIGNIN_FAILURE:
       return {
         ...state,
-        payload,
+        ...payload.response.data,
       };
     case SIGNUP_FAILURE:
       return {
         ...state,
-        payload,
+        ...payload.response.data,
       };
     default:
       return state;
