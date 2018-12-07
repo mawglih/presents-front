@@ -18,12 +18,9 @@ export function* logoutStartSaga() {
   });
 }
 
-
-
 export function* logoutSaga() {
   yield takeEvery(LOGOUT_START, logoutStartSaga);
 }
-
 
 export default [
   logoutSaga(),

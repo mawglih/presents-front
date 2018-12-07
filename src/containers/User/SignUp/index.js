@@ -33,9 +33,16 @@ class Signup extends Component {
     console.log(newUser);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {
+      history,
+    } = this.props;
+    if (nextProps.user) {
+      history.push('/signin');
+    }
+  }
+
   render() {
-    // const { user } = this.props.auth;
-    // user ? console.log('user is: ', user) : null;
     const {
       placeholder1,
       placeholder2,
@@ -111,7 +118,7 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.signup,
+  user: state.signup.user,
 });
 
 export default connect(mapStateToProps, { signupStart })(Signup);

@@ -5,9 +5,7 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  // signinStart,
-  // signinSuccess,
-  signupFailure,
+  SIGNUP_FAILURE,
   SIGNUP_START,
   SIGNUP_SUCCESS,
 } from 'actions';
@@ -41,12 +39,16 @@ export function* signupStartSaga({ payload }) {
         type: SIGNUP_SUCCESS,
         payload: data,
       });
-      yield console.log('signin saga: ', data)
+      yield console.log('signup saga: ', data)
     } else {
       throw data;
     }
   } catch (error) {
-    yield put(signupFailure(error));
+    yield console.log('signup saga error: ', error);
+    yield put({
+      type: SIGNUP_FAILURE,
+      payload: error,
+    });
   }
 }
 

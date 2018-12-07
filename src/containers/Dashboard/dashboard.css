@@ -1,0 +1,24 @@
+.dashbord {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.button > button {
+  background-color: brown;
+  color: white;
+  border: 2px black solid;
+  outline: none;
+  border-radius: 25px;
+  width: 150px;
+  height: 50px;
+}
+.button > button > a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+.button > button > a:hover {
+  cursor: pointer;
+}

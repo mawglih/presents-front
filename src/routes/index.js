@@ -5,13 +5,18 @@ import SignIn from 'containers/User/SignIn';
 import SignUp from 'containers/User/SignUp';
 import Logout from 'containers/User/Logout';
 import Profile from 'containers/Profle';
+import Dashboard from 'containers/Dashboard';
+import AddPresents from 'containers/AddPresents';
 import {
   LOGOUT as LOGOUT_URL,
   SIGN_UP as SIGN_UP_URL,
   SIGN_IN as SIGN_IN_URL,
   PROFILE as PROFILE_URL,
   HOME as HOME_URL,
+  DASHBOARD as DASHBOARD_URL,
+  ADDPRESENTS as ADDPRESENTS_URL,
 } from './constants';
+
 
 export default () => (
   <Switch>
@@ -38,6 +43,16 @@ export default () => (
       exact
       path={LOGOUT_URL}
       component={Logout}
+    />
+    <Route
+      exact
+      path={DASHBOARD_URL}
+      component={Dashboard}
+    />
+    <Route
+      exact
+      path={ADDPRESENTS_URL}
+      component={AddPresents}
     />
   </Switch>
 );

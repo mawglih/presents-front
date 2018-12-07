@@ -25,7 +25,7 @@ class Signin extends Component {
       history,
     } = this.props;
     if (nextProps.auth.isAuthenticated) {
-      history.push('/');
+      history.push('/dashboard');
     }
   }
 
