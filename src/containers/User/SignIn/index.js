@@ -15,8 +15,8 @@ class Signin extends Component {
       auth,
       history,
     } = this.props;
-    if (auth.isAuthenticated) {
-      history.push('/');
+    if (auth) {
+      history.push('/dashboard');
     }
   } 
 
@@ -24,7 +24,7 @@ class Signin extends Component {
     const {
       history,
     } = this.props;
-    if (nextProps.auth.isAuthenticated) {
+    if (nextProps.auth) {
       history.push('/dashboard');
     }
   }
@@ -49,6 +49,7 @@ class Signin extends Component {
   }
 
   render() {
+    console.log('token: ', localStorage.jwtToken);
     const {
       placeholder1,
       placeholder2,
@@ -58,7 +59,6 @@ class Signin extends Component {
       email,
       password,
     } = this.state;
-    console.log('sign in component error: ', error);
     return(
       <div className={styles.container}>
         <div className={styles.signin}>
@@ -112,7 +112,7 @@ class Signin extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.signin,
+  auth: state.signin.isAuthenticated,
   error: state.error,
 });
 

@@ -33,6 +33,16 @@ class Signup extends Component {
     console.log(newUser);
   }
 
+  componentDidMount() {
+    const {
+      auth,
+      history,
+    } = this.props;
+    if (auth) {
+      history.push('/dashboard');
+    }
+  } 
+
   componentWillReceiveProps(nextProps) {
     const {
       history,
@@ -132,6 +142,7 @@ class Signup extends Component {
 const mapStateToProps = state => ({
   user: state.signup.user,
   error: state.error,
+  auth: state.signin.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { signupStart })(Signup);

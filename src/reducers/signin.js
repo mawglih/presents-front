@@ -1,5 +1,5 @@
 import {
-  SIGNIN_SUCCESS,
+  SET_CURRENT_USER,
   LOGOUT_SUCCESS,
 } from 'actions';
 import isEmpty from 'utils/isEmpty';
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch(type) {
-    case SIGNIN_SUCCESS:
+    case SET_CURRENT_USER:
       return {
         ...state,
         isAuthenticated: !isEmpty(payload),
@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         isAuthenticated: false,
-        user: {},
+        user: payload,
       }
     default:
       return state;
