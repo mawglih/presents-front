@@ -55,6 +55,7 @@ class Signin extends Component {
       placeholder2,
       error,
     } = this.props;
+    console.log('signin errror: ', error);
     const {
       email,
       password,

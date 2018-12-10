@@ -8,6 +8,9 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 export const LOGOUT_START = 'LOGOUT_START';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const CHECK_USER_START = 'CHECK_USER_START';
+export const CHECK_USER_SUCCESS = 'CHECK_USER_SUCCESS';
+export const CHECK_USER_FAILURE = 'CHECK_USER_FAILURE';
 
 export const signinStart = (payload) => {
   console.log('action signin paylod: ', payload);
@@ -33,21 +36,21 @@ export const signinFailure = ({ payload }) => {
 
 export const signupStart = (payload) => {
   console.log('action signup paylod: ', payload);
-  return{
+  return {
     type: SIGNUP_START,
     payload,
   };
 };
 
 export const signupSuccess = ({ payload }) => {
-  return{
+  return {
     type: SIGNUP_SUCCESS,
     payload,
   };
 };
 
 export const signupFailure = ({ payload }) => {
-  return{
+  return {
     type: SIGNUP_FAILURE,
     error: payload,
   };
@@ -55,6 +58,7 @@ export const signupFailure = ({ payload }) => {
 
 export const setCurrentUser = token => {
   const decoded = jwt_decode(token);
+  console.log('setuser decoded: ', decoded);
   return {
     type: SET_CURRENT_USER,
     payload: decoded,
@@ -69,8 +73,31 @@ export const logoutStart = () => {
 };
 
 export const logoutSuccess = () => {
+  window.location.href = '/'
   return {
     type: LOGOUT_SUCCESS,
     payload: {},
+  };
+};
+
+export const checkUserStart = (payload) => {
+  console.log('action checkuserstart paylod: ', payload);
+  return{
+    type: CHECK_USER_START,
+    payload,
+  };
+};
+
+export const checkUserSuccess = ({ payload }) => {
+  return{
+    type: CHECK_USER_SUCCESS,
+    payload,
+  };
+};
+
+export const checkUserFailure = ({ payload }) => {
+  return{
+    type: CHECK_USER_FAILURE,
+    error: payload,
   };
 };

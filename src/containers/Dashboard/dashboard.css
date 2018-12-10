@@ -1,9 +1,11 @@
 .dashbord {
-  margin-top: 150px;
+  margin-top: 130px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+}
+.button {
+  align-self: center;
 }
 .button > button {
   background-color: brown;
@@ -21,4 +23,19 @@
 }
 .button > button > a:hover {
   cursor: pointer;
+}
+.podarki {
+  flex: 1 1 auto;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 0 0 20%;
+  width: 20vw;
+}
+.profile {
+  align-self: center;
+  margin-top: 20px;
 }

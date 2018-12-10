@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PodarkiList from 'containers/PodarkiList';
+import Profile from 'containers/Profile';
 import styles from './dashboard.css';
+
+
 
 class Dashboard extends Component {
   componentWillReceiveProps(nextProps) {
@@ -18,20 +22,28 @@ class Dashboard extends Component {
     } = this.props;
     return(
       <div className={styles.dashbord}>
-        <h1>Welcome to Dashboard {user.name}</h1>
-        <div>
-          <img
-            src={user.avatar}
-            alt={user.name}
-          />
+        <div className={styles.userinfo}>
+          <h1>Welcome to Dashboard {user.name}</h1>
+          <div>
+            <img
+              src={user.avatar}
+              alt={user.name}
+            />
+          </div>
+          <div className={styles.button}>
+            <h2> Add presents</h2>
+            <button>
+              <Link to='/addpresent'>
+                <span>Add</span>
+              </Link>
+            </button>
+          </div>
+          <div className={styles.profile}> 
+            <Profile />
+          </div>
         </div>
-        <div className={styles.button}>
-          <h2> Add presents</h2>
-          <button>
-            <Link to='/addpresents'>
-              <span>Add</span>
-            </Link>
-          </button>
+        <div className={styles.podarki}>
+          <PodarkiList />
         </div>
       </div>
     )

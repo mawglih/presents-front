@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import {
   logoutStart,
 } from 'actions';
+import {
+  clearCurrentProfile,
+} from 'actions/profile';
 import styles from './header.css';
 
  class Header extends Component {
@@ -11,7 +14,8 @@ import styles from './header.css';
   logout = e => {
     e.preventDefault();
     this.props.logoutStart();
-    window.location.href = '/Signin';
+    // window.location.href = '/Signin';
+    this.props.clearCurrentProfile();
   }
 
   render() {
@@ -78,4 +82,4 @@ const mapStateToProps = state => ({
   auth: state.signin.isAuthenticated,
   user: state.signin.user,
 });
-export default connect(mapStateToProps, { logoutStart })(Header);
+export default connect(mapStateToProps, { logoutStart, clearCurrentProfile })(Header);

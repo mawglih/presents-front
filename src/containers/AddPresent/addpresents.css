@@ -1,0 +1,45 @@
+.container {
+  margin-top: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.addpresent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 500px;
+}
+.form {
+  border: 1px rgb(10, 49, 31) solid;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  width: 100%;
+  height: 100%;
+}
+.input > input, textarea{
+  padding: 5px 40px 5px 2px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+.formSubmit {
+  padding: 20px 40px;
+  background-color: green;
+  border: white 1px solid;
+  outline: none;
+  color: white;
+}
+.formSubmit:hover {
+  transform: scale(1.01);
+  border:2px rgb(10, 49, 31) solid;
+}
+label {
+  display: block;
+}

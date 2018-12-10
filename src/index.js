@@ -13,19 +13,12 @@ import {
 import {
   routerMiddleware,
   connectRouter,
-  ConnectedRouter,
 } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from 'reducers';
 import rootSaga from 'sagas';
-import Routes from 'routes';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from 'utils/setAuthToken';
-import {
-  setCurrentUser,
-  logoutStart,
-} from 'actions';
+import App from 'containers/App';
 
 const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();
@@ -43,23 +36,9 @@ export const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-// const jwtToken = localStorage.getItem("jwtToken");
-// if (jwtToken !== "undefined") {
-//   setAuthToken(jwtToken);
-//   const decoded = jwt_decode(jwtToken);
-//   store.dispatch(setCurrentUser(decoded));
-//   const currentTime = Date.now() / 1000;
-//   if (decoded.exp < currentTime) {
-//     store.dispatch(logoutStart());
-//     window.location.href = '/';
-//   }
-// }
-
 render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Routes />
-    </ConnectedRouter>
+    <App history={history}/>
   </Provider>,
   document.getElementById('root'),
 );

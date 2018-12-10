@@ -2,7 +2,7 @@ export const SIGN_UP = '/signup';
 export const SIGN_IN = '/signin';
 export const PROFILE = '/profile';
 export const DASHBOARD = '/dashboard';
-export const ADDPRESENTS = '/addpresents';
+export const ADDPRESENT = '/addpresent';
 export const HOME = '/';
 
 export default {
@@ -11,5 +11,5 @@ export default {
   HOME,
   PROFILE,
   DASHBOARD,
-  ADDPRESENTS,
+  ADDPRESENT,
 };
