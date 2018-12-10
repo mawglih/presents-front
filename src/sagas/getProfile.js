@@ -6,7 +6,7 @@ import {
 import {
   GET_PROFILE_START,
   GET_PROFILE_SUCCESS,
-  GET_PROFILE_FAILURE,
+  // GET_PROFILE_FAILURE,
   PROFILE_LOADING,
   // PROFILE_NOT_FOUND,
 } from 'actions/profile';

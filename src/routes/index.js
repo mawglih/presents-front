@@ -3,10 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 import Home from 'components/Home';
 import SignIn from 'containers/User/SignIn';
 import SignUp from 'containers/User/SignUp';
-import Profile from 'containers/Profle';
+import Profile from 'containers/Profile';
 import Dashboard from 'containers/Dashboard';
 import AddPresent from 'containers/AddPresent';
 import PrivateRoute from 'common/PrivateRoute';
+import CreateProfile from 'containers/Profile/createProfile';
 import {
   SIGN_UP as SIGN_UP_URL,
   SIGN_IN as SIGN_IN_URL,
@@ -14,6 +15,7 @@ import {
   HOME as HOME_URL,
   DASHBOARD as DASHBOARD_URL,
   ADDPRESENT as ADDPRESENT_URL,
+  CREATEPROFILE as CREATEPROFILE_URL,
 } from './constants';
 
 
@@ -42,6 +44,11 @@ export default () => (
       exact
       path={DASHBOARD_URL}
       component={Dashboard}
+    />
+    <PrivateRoute
+      exact
+      path={CREATEPROFILE_URL}
+      component={CreateProfile}
     />
     <Route
       exact

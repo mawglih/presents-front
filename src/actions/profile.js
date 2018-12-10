@@ -7,6 +7,9 @@ export const GET_PROFILES_FAILURE = 'GET_PROFILES_FAILURE';
 export const PROFILE_LOADING = 'PROFILE_LOADING';
 export const PROFILE_NOT_FOUND = 'PROFILE_NOT_FOUND';
 export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROPFILE';
+export const CREATE_PROFILE_START = 'CREATE_PROFILE_START';
+export const CREATE_PROFILE_SUCCESS = 'CREATE_PROFILE_SUCCESS';
+export const CREATE_PROFILE_FAILURE = 'CREATE_PROFILE_FAILURE';
 
 export const getProfileStart = () => {
   console.log('profile started')
@@ -39,5 +42,27 @@ export const setProfileLoading = () => {
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE,
+  };
+};
+
+export const createProfileStart = () => {
+  console.log('profile started')
+  return {
+    type: CREATE_PROFILE_START,
+  };
+};
+
+export const createProfileSuccess = ({ payload }) => {
+  console.log('profile success')
+  return {
+    type: CREATE_PROFILE_SUCCESS,
+    payload,
+  };
+};
+
+export const createProfileFailure = ({ error }) => {
+  return {
+    type: CREATE_PROFILE_FAILURE,
+    payload: error,
   };
 };

@@ -43,7 +43,7 @@ class Profile extends Component {
         ProfileContent = (
           <div>
             <h3>You do not have a profile</h3>
-            <Link to="/addprofile">
+            <Link to="/createprofile">
               <h4>Please create a profile</h4>
             </Link>
           </div>
