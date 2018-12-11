@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import cn from 'classname';
+import TextInput from 'common/InputComponents/TextInput';
+import TextareaInput from 'common/InputComponents/TextareaInput';
+import SelectInput from 'common/InputComponents/SelectInput';
 import { connect } from 'react-redux';
 import {
   addPresentStart
@@ -12,6 +16,7 @@ class AddPresent extends Component {
     description: '',
     url: '',
     occasion: '',
+    price: 0,
   }
 
   
@@ -26,6 +31,7 @@ class AddPresent extends Component {
     const newPresent = {
       title: this.state.title,
       image: this.state.image,
+      price: this.state.price,
       description: this.state.description,
       url: this.state.url,
       occasion: this.state.occasion,
@@ -49,18 +55,22 @@ class AddPresent extends Component {
     }
   }
   render() {
+    const Occasions = [
+      {name: 'For My Birthday', value: 'birthday'},
+      {name: 'New Year Present', value: 'newyear'},
+      {name: 'For my wedding', value: 'wedding'},
+      {name: 'For my weeding anniversary', value: 'anniversary'},
+      {name: 'For Hanuka', value: 'hanuka'},
+      {name: 'Because I am good', value: 'good'},
+      {name: 'I want a present', value: 'other'},
+    ]
     const {
-      placeholder1,
-      placeholder2,
-      placeholder3,
-      placeholder4,
-      placeholder5,
       error,
     } = this.props;
-    console.log('addpresents comp error: ', error);
     const {
       title,
       image,
+      price,
       description,
       url,
       occasion,
@@ -71,59 +81,64 @@ class AddPresent extends Component {
         <div className={styles.addpresent}>
           <form
             onSubmit={this.handleSubmit}
-            className={styles.form}
+            className={cn(
+              styles.form,
+              Object.keys(error).length > 0 ? styles.formInvalid : null,
+            )}
           >
-            <div className={styles.input}>
-              <label>Title</label>
-              <input
-                name="title"
-                value={title}
-                type="text"
-                placeholder={placeholder1}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.input}>
-              <label>Image</label>
-              <input
-                name="image"
-                value={image}
-                type="text"
-                placeholder={placeholder2}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.input}>
-              <label>Description</label>
-              <textarea
-                name="description"
-                rows="5"
-                value={description}
-                type="text"
-                placeholder={placeholder3}
-                onChange={this.handleChange}
-              ></textarea>
-            </div>
-            <div className={styles.input}>
-              <label>URL</label>
-              <input
-                name="url"
-                value={url}
-                type="text"
-                placeholder={placeholder4}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.input}>
-              <label>Occasion</label>
-              <input
-                name="occasion"
-                value={occasion}
-                type="text"
-                placeholder={placeholder5}
-                onChange={this.handleChange}
-              />
-            </div>
+            <TextInput
+              label="Title"
+              value={title}
+              type="title"
+              placeholder="Your present title"
+              onChange={this.handleChange}
+              name="title"
+              error={error.title}
+            />
+            <TextInput
+              label="Image"
+              value={image}
+              type="text"
+              placeholder="Link to the image of the present"
+              onChange={this.handleChange}
+              name="image"
+              error={error.image}
+            />
+            <TextInput
+              label="Price"
+              value={price}
+              type="number"
+              placeholder="Approximate price of the present"
+              onChange={this.handleChange}
+              name="price"
+              error={error.price}
+            />
+            <TextareaInput
+              label="Description"
+              value={description}
+              placeholder="Your present description"
+              onChange={this.handleChange}
+              name="description"
+              error={error.description}
+            />
+            <TextInput
+              label="URL to store"
+              value={url}
+              type="text"
+              placeholder="Enter url to purchase a present"
+              onChange={this.handleChange}
+              name="url"
+              error={error.url}
+            />
+            <SelectInput
+              label="Occasion"
+              value={occasion}
+              placeholder="Select your occasion"
+              onChange={this.handleChange}
+              name="occasion"
+              error={error.occasion}
+              options={Occasions}
+            />
             <div>
               <button
                 className={styles.formSubmit}
@@ -133,16 +148,6 @@ class AddPresent extends Component {
               </button>
             </div>
           </form>
-          {Object.values(error).length > 0 ? (
-            <div>
-              {Object.values(error).map(item => {
-                return <p key={encodeURIComponent(item)}>
-                  {item}
-                </p>
-              })}
-            </div>
-          ) : null
-          }
         </div>
       </div>
     );

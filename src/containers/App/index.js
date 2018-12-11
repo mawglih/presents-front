@@ -1,22 +1,34 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import Routes from 'routes';
-import SignIn from 'containers/User/SignIn';
+import {
+  Routes,
+  RoutesNotAuth,
+} from 'routes';
 import { ConnectedRouter } from 'connected-react-router';
 import Layout from 'components/Layout';
 import {
-  checkUserStart,
+  setCurrentUser,
+  logoutStart,
 } from 'actions';
-
+import validateToken from 'utils/validateToken';
+import setAuthToken from 'utils/setAuthToken';
 
 class App extends Component {
   componentDidMount() {
     const {
-      checkUserStart,
+      setCurrentUser,
+      logoutStart,
     } = this.props;
     if(localStorage.getItem('jwtToken')) {
       const token = localStorage.getItem('jwtToken');
-      checkUserStart(token);
+      if(validateToken(token)) {
+        setCurrentUser(token);
+        setAuthToken(token);
+      } else {
+        logoutStart();
+      }
+    } else {
+      logoutStart();
     }
   }
   render () {
@@ -32,7 +44,13 @@ class App extends Component {
             <Routes />
           </Layout>
         </ConnectedRouter>
-        ) : <SignIn />
+        ) : (
+        <ConnectedRouter history={history}>
+          <Layout>
+            <RoutesNotAuth/>
+          </Layout>
+        </ConnectedRouter>
+        )
       }
       </Fragment>
     )
@@ -45,4 +63,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { checkUserStart })(App);
+export default connect(mapStateToProps, { setCurrentUser, logoutStart })(App);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import cn from 'classname';
 import { connect } from 'react-redux';
 import { signupStart } from 'actions';
+import TextInput from 'common/InputComponents/TextInput';
 import styles from "./signup.css";
 
 class Signup extends Component {
@@ -55,10 +57,6 @@ class Signup extends Component {
 
   render() {
     const {
-      placeholder1,
-      placeholder2,
-      placeholder3,
-      placeholder4,
       error,
     } = this.props;
     const {
@@ -72,48 +70,47 @@ class Signup extends Component {
         <div className={styles.signup}>
           <form
             onSubmit={this.handleSubmit}
-            className={styles.form}
+            className={cn(
+              styles.form,
+              Object.keys(error).length > 0 ? styles.formInvalid : null,
+            )}
           >
-            <div className={styles.input}>
-              <label>Email</label>
-              <input
-                name="email"
-                value={email}
-                type="email"
-                placeholder={placeholder1}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.input}>
-              <label>Username</label>
-              <input
-                name="username"
-                value={username}
-                type="text"
-                placeholder={placeholder2}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.input}>
-              <label>Password</label>
-              <input
-                name="password"
-                value={password}
-                type="password"
-                placeholder={placeholder3}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className={styles.input}>
-              <label>Password repeat</label>
-              <input
-                name="password2"
-                value={password2}
-                type="password"
-                placeholder={placeholder4}
-                onChange={this.handleChange}
-              />
-            </div>
+            <TextInput
+              label="Email"
+              value={email}
+              type="email"
+              placeholder="Your email address"
+              onChange={this.handleChange}
+              name="email"
+              error={error.email}
+            />
+            <TextInput
+              label="Username"
+              value={username}
+              type="text"
+              placeholder="Your usernaem"
+              onChange={this.handleChange}
+              name="username"
+              error={error.name}
+            />
+            <TextInput
+              label="Password"
+              value={password}
+              type="password"
+              placeholder="Your password"
+              onChange={this.handleChange}
+              name="password1"
+              error={error.password}
+            />
+            <TextInput
+              label="Password Confirm"
+              value={password2}
+              type="password"
+              placeholder="Retype your password"
+              onChange={this.handleChange}
+              name="password2"
+              error={error.password}
+            />
             <div>
               <button
                 className={styles.formSubmit}
@@ -123,16 +120,6 @@ class Signup extends Component {
               </button>
             </div>
           </form>
-          {Object.values(error).length > 0 ? (
-            <ul>
-              {Object.values(error).map(item => {
-                return <li key={encodeURIComponent(item)}>
-                  {item}
-                </li>
-              })}
-            </ul>
-          ) : null
-          }
         </div>
       </div>
     );

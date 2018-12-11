@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signinStart } from 'actions';
+import cn from 'classname';
+import TextInput from 'common/InputComponents/TextInput';
 import styles from "./signin.css";
 
 class Signin extends Component {
@@ -51,8 +53,6 @@ class Signin extends Component {
   render() {
     console.log('token: ', localStorage.jwtToken);
     const {
-      placeholder1,
-      placeholder2,
       error,
     } = this.props;
     console.log('signin errror: ', error);
@@ -65,28 +65,29 @@ class Signin extends Component {
         <div className={styles.signin}>
           <form
             onSubmit={this.handleSubmit}
-            className={styles.form}
+            className={cn(
+              styles.form,
+              Object.keys(error).length > 0 ? styles.formInvalid : null,
+            )}
           >
-            <div className={styles.input}>
-              <label>Email</label>
-              <input
-                value={email}
-                type="text"
-                placeholder={placeholder1}
-                onChange={this.handleChange}
-                name="email"
-              />
-            </div>
-            <div className={styles.input}>
-              <label>Password</label>
-              <input
-                name="password"
-                value={password}
-                type="password"
-                placeholder={placeholder2}
-                onChange={this.handleChange}
-              />
-            </div>
+            <TextInput
+              label="Email"
+              value={email}
+              type="email"
+              placeholder="Your email address"
+              onChange={this.handleChange}
+              name="email"
+              error={error.email}
+            />
+            <TextInput
+              label="Password"
+              value={password}
+              type="password"
+              placeholder="Your password"
+              onChange={this.handleChange}
+              name="password"
+              error={error.password}
+            />
             <div>
               <button
                 className={styles.formSubmit}
@@ -96,16 +97,6 @@ class Signin extends Component {
               </button>
             </div>
           </form>
-          {Object.values(error).length > 0 ? (
-            <ul>
-              {Object.values(error).map(item => {
-                return <li key={encodeURIComponent(item)}>
-                  {item}
-                </li>
-              })}
-            </ul>
-          ) : null
-          }      
         </div>
       </div>
     );

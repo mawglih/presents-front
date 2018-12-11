@@ -24,10 +24,13 @@
   width: 100%;
   height: 100%;
 }
-.input > input{
-  padding: 20px 40px;
-  margin-bottom: 20px;
-  margin-left: 10px;
+.formInvalid {
+  border: 2px red solid;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  width: 100%;
+  height: 120%;
 }
 .formSubmit {
   padding: 20px 40px;

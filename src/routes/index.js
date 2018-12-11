@@ -19,7 +19,7 @@ import {
 } from './constants';
 
 
-export default () => (
+export const Routes = () => (
   <Switch>
     <Route
       exact
@@ -57,3 +57,23 @@ export default () => (
     />
   </Switch>
 );
+
+export const RoutesNotAuth = () => (
+  <Switch>
+    <Route
+      path={SIGN_IN_URL}
+      component={SignIn}
+    />
+    <Route
+      exact
+      path={HOME_URL}
+      component={Home}
+    />
+    <Route
+      path={SIGN_UP_URL}
+      component={SignUp}
+    />
+  </Switch>
+)
+
+export default {};

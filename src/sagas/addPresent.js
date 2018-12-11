@@ -18,6 +18,7 @@ export function* addPresentStartSaga({ payload }) {
   const {
     title,
     url,
+    price,
     image,
     description,
     occasion,
@@ -33,6 +34,7 @@ export function* addPresentStartSaga({ payload }) {
       data: {
         title,
         url,
+        price,
         image,
         description,
         occasion,
