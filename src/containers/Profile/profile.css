@@ -52,3 +52,14 @@ label {
   align-self: flex-start;
   margin-left: 20vw;
 }
+.icon {
+  width: 20px;
+  margin-right: 5px;
+}
+.actionLinks {
+  padding: 20px;
+  display: block;
+  text-decoration: none;
+  color: brown;
+  font-weight: bolder;
+}

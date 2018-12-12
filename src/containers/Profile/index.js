@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   getProfileStart,
 } from 'actions/profile';
+import ProfileActions from './profileActions';
 
 class Profile extends Component {
 
@@ -39,8 +40,9 @@ class Profile extends Component {
       if(Object.keys(current).length > 0) {
         ProfileContent = (
           <div>
-            <h2>Profile</h2>
-            <p>{current.handle}</p>
+            <h2>Welcome {user.name}</h2>
+            <p>You can access your <Link to={`/profile/${current.handle}`}>Profile</Link></p>
+            <ProfileActions/>
           </div>
         )
       } else {
