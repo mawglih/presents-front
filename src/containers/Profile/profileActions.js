@@ -10,7 +10,7 @@ export default () => {
   return (
     <div>
       <Link
-        to="edit"
+        to="/editprofile"
         className={styles.actionLinks}
       >
         <SVGIcon
@@ -20,7 +20,7 @@ export default () => {
         Edit Profile
       </Link>
       <Link
-        to="edit"
+        to="/profile"
         className={styles.actionLinks}
       >
       < SVGIcon
@@ -30,7 +30,7 @@ export default () => {
         Add Experience
       </Link>
       <Link
-        to="edit"
+        to="/editprofile"
         className={styles.actionLinks}
       >
         <SVGIcon

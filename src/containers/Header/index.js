@@ -58,8 +58,15 @@ const UserAuth = ({
   handleLogout
 }) => (
   <Fragment>
-    <div className={styles.left}>Welcome to Presents, dear {user.name}</div>
+    <div className={styles.left}>
+      <p>Welcome to Presents, dear {user.name}</p>
+    </div>
     <div className={styles.right}>
+      <div>
+        <Link to='/dashboard'>
+          <span>Dashboard</span>
+        </Link>
+      </div>
       <div
         className={styles.logout}
       >

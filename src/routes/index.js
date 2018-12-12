@@ -8,6 +8,7 @@ import Dashboard from 'containers/Dashboard';
 import AddPresent from 'containers/AddPresent';
 import PrivateRoute from 'common/PrivateRoute';
 import CreateProfile from 'containers/Profile/createProfile';
+import EditProfile from 'containers/Profile/editProfile';
 import {
   SIGN_UP as SIGN_UP_URL,
   SIGN_IN as SIGN_IN_URL,
@@ -16,6 +17,7 @@ import {
   DASHBOARD as DASHBOARD_URL,
   ADDPRESENT as ADDPRESENT_URL,
   CREATEPROFILE as CREATEPROFILE_URL,
+  EDITPROFILE as EDITPROFILE_URL,
 } from './constants';
 
 
@@ -49,6 +51,11 @@ export const Routes = () => (
       exact
       path={CREATEPROFILE_URL}
       component={CreateProfile}
+    />
+    <PrivateRoute
+      exact
+      path={EDITPROFILE_URL}
+      component={EditProfile}
     />
     <Route
       exact

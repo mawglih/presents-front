@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createProfileStart } from 'actions/profile';
+import {
+  createProfileStart,
+  getProfileStart,
+} from 'actions/profile';
+import isEmpty from 'utils/isEmpty';
 import TextInput from 'common/InputComponents/TextInput';
 import SelectInput from 'common/InputComponents/SelectInput';
 import TextareaInput from 'common/InputComponents/TextareaInput';
@@ -66,12 +70,52 @@ class CreateProfile extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       history,
-      error
+      error,
     } = this.props;
-    if (nextProps.user && error === null) {
+    if(nextProps.user && error === null) {
       history.push('/signin');
     }
+    if(nextProps.profile.current) {
+      const profile = nextProps.profile.current;
+      console.log('editprofile const profile: ', profile);
+      const skillsCSV = profile.skills.join(',');
+      profile.company = !isEmpty(profile.company) ?  profile.company : '';
+      profile.website = !isEmpty(profile.website) ?  profile.website : '';
+      profile.location = !isEmpty(profile.location) ?  profile.location : '';
+      profile.statusP = !isEmpty(profile.statusP) ?  profile.statusP : '';
+      profile.bio = !isEmpty(profile.bio) ?  profile.bio : '';
+      profile.githubusername = !isEmpty(profile.githubusername) ?  profile.githubusername : '';
+      profile.social = !isEmpty(profile.social) ?  profile.social : {};
+      profile.facebook = !isEmpty(profile.social.facebook) ?  profile.social.facebook : '';
+      profile.youtube = !isEmpty(profile.social.youtube) ?  profile.social.youtube : '';
+      profile.twitter = !isEmpty(profile.social.twitter) ?  profile.social.twitter : '';
+      profile.linkedin = !isEmpty(profile.social.linkedin) ?  profile.social.linkedin : '';
+      profile.instagram = !isEmpty(profile.social.instagram) ?  profile.social.instagram : '';
+      this.setState({
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        statusP: profile.statusP,
+        skills: skillsCSV,
+        bio: profile.bio,
+        githubusername: profile.githubusername,
+        facebook: profile.facebook,
+        youtube: profile.youtube,
+        twitter: profile.twitter,
+        linkedin: profile.linkedin,
+        instagram: profile.instagram,
+      });
+    }
   }
+
+  componentDidMount() {
+    const {
+      getProfileStart
+    } = this.props;
+    getProfileStart();
+  }
+
   render() {
     const StatusP = [
       {name: 'Employed', value: 'employed'},
@@ -90,7 +134,7 @@ class CreateProfile extends Component {
     const {
       error,
     } = this.props;
-    console.log('createprofile comp error: ', error);
+    console.log('editprofile comp error: ', error);
     const {
       handle,
       company,
@@ -108,8 +152,7 @@ class CreateProfile extends Component {
     } = this.state;
     return (
       <div className={styles.container}>
-        <h1> Add profile</h1>
-        <h2>Let's get some information to create your profile</h2>
+        <h1> Edit profile</h1>
         <div className={styles.smallText}>
           <small>* = denote required field</small>
         </div>
@@ -258,7 +301,7 @@ class CreateProfile extends Component {
                 className={styles.formSubmit}
                 type="submit"
               >
-                Submit
+                Update profile
               </button>
             </div>
           </form>
@@ -271,8 +314,8 @@ class CreateProfile extends Component {
 const mapStateToProps = (state) => {
   return {
     error: state.error,
-    profile: state.profile.current,
+    profile: state.profile,
   }
 }
 
-export default connect(mapStateToProps, { createProfileStart })(CreateProfile);
+export default connect(mapStateToProps, { createProfileStart, getProfileStart })(CreateProfile);
