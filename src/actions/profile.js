@@ -45,10 +45,11 @@ export const clearCurrentProfile = () => {
   };
 };
 
-export const createProfileStart = () => {
+export const createProfileStart = (payload ) => {
   console.log('profile started')
   return {
     type: CREATE_PROFILE_START,
+    payload,
   };
 };
 

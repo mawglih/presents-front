@@ -8,6 +8,7 @@ import checkUserSaga from './checkCurrentUser';
 import addPresentSaga from './addPresent';
 import getPresentsSaga from './getPresents';
 import getProfileSaga from './getProfile';
+import createProfileSaga from './createProfile';
 
 export default function* rootSaga() {
   yield all([
@@ -18,5 +19,6 @@ export default function* rootSaga() {
     ...addPresentSaga,
     ...getPresentsSaga,
     ...getProfileSaga,
+    ...createProfileSaga,
   ]);
 }

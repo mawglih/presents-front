@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loader from 'react-loader-spinner';
+import { PulseLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 import {
   getProfileStart,
@@ -30,15 +30,19 @@ class Profile extends Component {
     let ProfileContent;
     if(current === null || loading) {
       ProfileContent = 
-        (<Loader
-          type="Circles"
-          color="rgb(10, 49, 31)"
-          height={80}
-          width={80}
+        (<PulseLoader
+          margin="4px"
+          color={'rgb(10, 49, 31)'}
+          size={30}
         />)
     } else {
       if(Object.keys(current).length > 0) {
-        ProfileContent = <h2>Profile</h2>
+        ProfileContent = (
+          <div>
+            <h2>Profile</h2>
+            <p>{current.handle}</p>
+          </div>
+        )
       } else {
         ProfileContent = (
           <div>

@@ -32,7 +32,7 @@ import {
         type: GET_PROFILE_SUCCESS,
         payload: data,
       });
-     } if (status === 404) {
+     } else if (status === 404) {
        yield put({
          type: GET_PROFILE_SUCCESS,
          payload: {},

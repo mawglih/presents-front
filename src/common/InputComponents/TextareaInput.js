@@ -9,6 +9,7 @@ export default ({
   label,
   error,
   info,
+  row,
   onChange,
 }) => (
   <div className={styles.inputContainer}>
@@ -26,6 +27,7 @@ export default ({
       name={name}
       value={value}
       onChange={onChange}
+      rows={row}
     />
     {info && <small className={styles.text}>{info}</small>}
     {error && <div className={styles.invalidFeedback}>{error}</div>}

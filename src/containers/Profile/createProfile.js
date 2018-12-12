@@ -4,15 +4,22 @@ import { createProfileStart } from 'actions/profile';
 import TextInput from 'common/InputComponents/TextInput';
 import SelectInput from 'common/InputComponents/SelectInput';
 import TextareaInput from 'common/InputComponents/TextareaInput';
+import TextInputGroup from 'common/InputComponents/TextInputGroup';
+import facebookSVG from './SvgIcons/facebook2.svg';
+import instagramSVG from './SvgIcons/instagram.svg';
+import linkedinSVG from './SvgIcons/linkedin.svg';
+import twitterSVG from './SvgIcons/twitter.svg';
+import youtubeSVG from './SvgIcons/video-camera.svg';
 import styles from './profile.css';
 
 class CreateProfile extends Component {
   state = {
+    displaySocialInputs: false,
     handle: '',
     company: '',
     website: '',
     location: '',
-    status: '',
+    statusP: '',
     skills: '',
     bio: '',
     githubusername: '',
@@ -21,6 +28,7 @@ class CreateProfile extends Component {
     twitter: '',
     linkedin: '',
     instagram: '',
+    errors: {},
   }
 
   
@@ -37,7 +45,7 @@ class CreateProfile extends Component {
       company: this.state.company,
       website: this.state.website,
       location: this.state.location,
-      status: this.state.status,
+      statusP: this.state.statusP,
       skills: this.state.skills,
       bio: this.state.bio,
       githubusername: this.state.githubusername,
@@ -50,8 +58,8 @@ class CreateProfile extends Component {
       createProfileStart,
       history,
     } = this.props;
+    console.log('new profile is: ', newProfile);
     createProfileStart(newProfile);
-    console.log(newProfile);
     history.push('/dashboard');
   }
 
@@ -65,7 +73,7 @@ class CreateProfile extends Component {
     }
   }
   render() {
-    const Status = [
+    const StatusP = [
       {name: 'Employed', value: 'employed'},
       {name: 'Unemployed', value: 'unemployed'},
       {name: 'Student', value: 'student'},
@@ -88,7 +96,7 @@ class CreateProfile extends Component {
       company,
       website,
       location,
-      status,
+      statusP,
       skills,
       bio,
       githubusername,
@@ -101,19 +109,24 @@ class CreateProfile extends Component {
     return (
       <div className={styles.container}>
         <h1> Add profile</h1>
+        <h2>Let's get some information to create your profile</h2>
+        <div className={styles.smallText}>
+          <small>* = denote required field</small>
+        </div>
         <div className={styles.addprofile}>
           <form
             onSubmit={this.handleSubmit}
             className={styles.form}
           >
             <TextInput
-              label="Handle"
+              label="* Handle"
               value={handle}
               type="text"
               placeholder="Create your handle"
               onChange={this.handleChange}
               name="handle"
               error={error.handle}
+              info="Create a handle by which your profile can be recognized"
             />
             <TextInput
               label="Company"
@@ -123,6 +136,7 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="company"
               error={error.company}
+              info="Where are you working currently"
             />
             <TextInput
               label="Website"
@@ -132,24 +146,27 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="website"
               error={error.website}
+              info="If you have a website provide the name for it"
             />
             <TextInput
-              label="Location"
+              label="* Location"
               value={location}
               type="text"
               placeholder="Where are you located"
               onChange={this.handleChange}
               name="location"
               error={error.location}
+              info="Where are you currenly located?"
             />
             <SelectInput
-              label="Status"
-              value={status}
-              placeholder="Select your status"
+              label="* Status"
+              value={statusP}
+              placeholder="Select your statusP"
               onChange={this.handleChange}
-              name="status"
-              error={error.status}
-              options={Status}
+              name="statusP"
+              error={error.statusP}
+              options={StatusP}
+              info="What is you employment statusP or statusP in life?"
             />
             <TextareaInput
               label="Bio"
@@ -158,6 +175,8 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="bio"
               error={error.bio}
+              row="10"
+              info="Short Bio about yourself or your cat"
             />
             <SelectInput
               label="Your skills"
@@ -167,6 +186,7 @@ class CreateProfile extends Component {
               name="skills"
               error={error.skills}
               options={Skills}
+              info="Select your skill level if you better than ape"
             />
             <TextInput
               label="Github Username"
@@ -176,8 +196,10 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="githubusername"
               error={error.githubusername}
+              info="Do not know what it is? Do not bother, just downgrade your skill level from above"
             />
-            <TextInput
+            <TextInputGroup
+              icon={facebookSVG}
               label="Facebook handle"
               value={facebook}
               type="text"
@@ -185,8 +207,10 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="facebook"
               error={error.facebook}
+              info="If you do not have one nobody will punish you"
             />
-            <TextInput
+            <TextInputGroup
+              icon={youtubeSVG}
               label="Youtube profile"
               value={youtube}
               type="text"
@@ -194,8 +218,10 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="youtube"
               error={error.youtube}
+              info="If you do not have one nobody will punish you"
             />
-            <TextInput
+            <TextInputGroup
+              icon={twitterSVG}
               label="Twitter handle"
               value={twitter}
               type="text"
@@ -203,8 +229,10 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="twitter"
               error={error.twitter}
+              info="If you do not have one nobody will punish you"
             />
-            <TextInput
+            <TextInputGroup
+              icon={linkedinSVG}
               label="Linkedin profile"
               value={linkedin}
               type="text"
@@ -212,8 +240,10 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="linkedin"
               error={error.linkedin}
+              info="If you do not have one nobody will punish you"
             />
-            <TextInput
+            <TextInputGroup
+              icon={instagramSVG}
               label="Instagram username"
               value={instagram}
               type="text"
@@ -221,6 +251,7 @@ class CreateProfile extends Component {
               onChange={this.handleChange}
               name="instagram"
               error={error.instagram}
+              info="If you do not have one nobody will punish you"
             />
             <div>
               <button
@@ -240,6 +271,7 @@ class CreateProfile extends Component {
 const mapStateToProps = (state) => {
   return {
     error: state.error,
+    profile: state.profile.current,
   }
 }
 
