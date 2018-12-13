@@ -11,6 +11,7 @@ export default ({
   info,
   type,
   onChange,
+  checkbox,
   disabled,
 }) => (
   <div className={styles.inputContainer}>
@@ -22,8 +23,8 @@ export default ({
     <input
       type={type}
       className={cn(
-        styles.input,
         error ? styles.invalid : null,
+        checkbox ? styles.checkbox : styles.input,
       )}
       placeholder={placeholder}
       name={name}

@@ -5,6 +5,7 @@ export default ({
   title,
   url,
   image,
+  price,
   description,
   occasion,
 }) => (
@@ -31,6 +32,9 @@ export default ({
       <div className={styles.occasion}>
         <span>For the following occasion: </span>
         <span>{occasion}</span>
+      </div>
+      <div className={styles.price}>
+        <span>{'$ '}</span><span>{price}</span>
       </div>
     </div>
   </div>

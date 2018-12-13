@@ -20,24 +20,24 @@ export default () => {
         Edit Profile
       </Link>
       <Link
-        to="/profile"
+        to="/occasions"
         className={styles.actionLinks}
       >
       < SVGIcon
           className={styles.icon}
           icon={expSVG}
         />
-        Add Experience
+        Add Occasions
       </Link>
       <Link
-        to="/editprofile"
+        to="/addpresent"
         className={styles.actionLinks}
       >
         <SVGIcon
           className={styles.icon}
           icon={eduSVG}
         />
-        Add Education
+        Add Presents
       </Link>
     </div>
   )

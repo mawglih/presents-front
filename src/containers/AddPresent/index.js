@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import cn from 'classname';
 import TextInput from 'common/InputComponents/TextInput';
 import TextareaInput from 'common/InputComponents/TextareaInput';
@@ -7,7 +7,11 @@ import { connect } from 'react-redux';
 import {
   addPresentStart
 } from 'actions/presents';
+import {
+  getProfileStart
+} from 'actions/profile';
 import styles from './addpresents.css';
+import { PulseLoader } from 'react-spinners';
 
 class AddPresent extends Component {
   state = {
@@ -17,8 +21,8 @@ class AddPresent extends Component {
     url: '',
     occasion: '',
     price: 0,
+    error: {},
   }
-
   
   handleChange = e => {
     this.setState({
@@ -38,11 +42,16 @@ class AddPresent extends Component {
     };
     const {
       addPresentStart,
+      getProfileStart,
       history,
+      error,
     } = this.props;
+    getProfileStart();
     addPresentStart(newPresent);
     console.log(newPresent);
-    history.push('/dashboard');
+    if(Object.keys(error).length === 0) {
+      history.push('/dashboard');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,18 +64,14 @@ class AddPresent extends Component {
     }
   }
   render() {
-    const Occasions = [
-      {name: 'For My Birthday', value: 'birthday'},
-      {name: 'New Year Present', value: 'newyear'},
-      {name: 'For my wedding', value: 'wedding'},
-      {name: 'For my weeding anniversary', value: 'anniversary'},
-      {name: 'For Hanuka', value: 'hanuka'},
-      {name: 'Because I am good', value: 'good'},
-      {name: 'I want a present', value: 'other'},
-    ]
     const {
+      loading,
       error,
+      profile: {
+        occasions,
+      } = {},
     } = this.props;
+    // console.log('in add present: ', occasions);
     const {
       title,
       image,
@@ -75,9 +80,29 @@ class AddPresent extends Component {
       url,
       occasion,
     } = this.state;
+    let Occasions = [
+      {name: 'Select an occasion for your present', value: 0, date: null, special: false},
+    ];
+    if(occasions != null) {
+      occasions.map(item => {
+        let name = item.title;
+        let value = item.title;
+        let date = item.at;
+        let special = item.special;
+        return Occasions.push({name, value, date, special})
+      });
+    }
+
     return (
       <div className={styles.container}>
         <h1> Add present</h1>
+        {loading ? (
+          <PulseLoader
+            margin="10px"
+            color={'rgb(10, 49, 31)'}
+            size={50}
+          />
+        ) : (
         <div className={styles.addpresent}>
           <form
             onSubmit={this.handleSubmit}
@@ -149,6 +174,7 @@ class AddPresent extends Component {
             </div>
           </form>
         </div>
+        )}
       </div>
     );
   }
@@ -159,6 +185,8 @@ const mapStateToProps = state => ({
   error: state.error,
   auth: state.signin.isAuthenticated,
   present: state.present,
+  profile: state.profile.current,
+  loading: state.profile.loading,
 });
 
-export default connect(mapStateToProps, { addPresentStart })(AddPresent);
+export default connect(mapStateToProps, { addPresentStart, getProfileStart })(AddPresent);

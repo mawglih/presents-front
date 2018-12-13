@@ -10,6 +10,10 @@ export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROPFILE';
 export const CREATE_PROFILE_START = 'CREATE_PROFILE_START';
 export const CREATE_PROFILE_SUCCESS = 'CREATE_PROFILE_SUCCESS';
 export const CREATE_PROFILE_FAILURE = 'CREATE_PROFILE_FAILURE';
+export const ADD_OCCASION_START = 'ADD_OCCASION_START';
+export const ADD_OCCASION_SUCCESS = 'ADD_OCCASION_SUCCESS';
+export const ADD_OCCASION_FAILURE = 'ADD_OCCASION_FAILURE';
+
 
 export const getProfileStart = () => {
   console.log('profile started')
@@ -64,6 +68,29 @@ export const createProfileSuccess = ({ payload }) => {
 export const createProfileFailure = ({ error }) => {
   return {
     type: CREATE_PROFILE_FAILURE,
+    payload: error,
+  };
+};
+
+export const addOccasionStart = (payload ) => {
+  console.log('add occasion action started')
+  return {
+    type: ADD_OCCASION_START,
+    payload,
+  };
+};
+
+export const addOccasionSuccess = ({ payload }) => {
+  console.log('add occasion action success')
+  return {
+    type: ADD_OCCASION_SUCCESS,
+    payload,
+  };
+};
+
+export const addOccasionFailure = ({ error }) => {
+  return {
+    type: ADD_OCCASION_FAILURE,
     payload: error,
   };
 };

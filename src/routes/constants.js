@@ -5,6 +5,7 @@ export const DASHBOARD = '/dashboard';
 export const ADDPRESENT = '/addpresent';
 export const CREATEPROFILE = '/createprofile';
 export const EDITPROFILE = '/editprofile';
+export const OCCASIONS = '/occasions';
 export const HOME = '/';
 
 export default {
@@ -16,4 +17,5 @@ export default {
   ADDPRESENT,
   CREATEPROFILE,
   EDITPROFILE,
+  OCCASIONS,
 };

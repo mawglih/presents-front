@@ -47,6 +47,7 @@ class CreateProfile extends Component {
       location: this.state.location,
       statusP: this.state.statusP,
       skills: this.state.skills,
+      skillLevel: this.state.skillLevel,
       bio: this.state.bio,
       githubusername: this.state.githubusername,
       facebook: this.state.facebook,
@@ -74,12 +75,14 @@ class CreateProfile extends Component {
   }
   render() {
     const StatusP = [
+      {name: 'Select your employment status', value: 0},
       {name: 'Employed', value: 'employed'},
       {name: 'Unemployed', value: 'unemployed'},
       {name: 'Student', value: 'student'},
       {name: 'Married with children', value: 'married'},
     ];
     const Skills = [
+      {name: 'Select your skill level', value: 0},
       {name: 'I do not know anything', value: 'idiot'},
       {name: 'I am just starting', value: 'junior'},
       {name: 'I have a little experinece', value: 'juniorplust'},
@@ -98,6 +101,7 @@ class CreateProfile extends Component {
       location,
       statusP,
       skills,
+      skillLevel,
       bio,
       githubusername,
       facebook,
@@ -161,7 +165,6 @@ class CreateProfile extends Component {
             <SelectInput
               label="* Status"
               value={statusP}
-              placeholder="Select your statusP"
               onChange={this.handleChange}
               name="statusP"
               error={error.statusP}
@@ -178,13 +181,22 @@ class CreateProfile extends Component {
               row="10"
               info="Short Bio about yourself or your cat"
             />
-            <SelectInput
-              label="Your skills"
+            <TextInput
+              label="Your Skills"
               value={skills}
-              placeholder="Select your skill level"
+              type="text"
+              placeholder="Type skills, separated by comma"
               onChange={this.handleChange}
               name="skills"
               error={error.skills}
+              info="SHow here what you know"
+            />
+            <SelectInput
+              label="Your professional level"
+              value={skillLevel}
+              onChange={this.handleChange}
+              name="skills"
+              error={error.skillLevel}
               options={Skills}
               info="Select your skill level if you better than ape"
             />
