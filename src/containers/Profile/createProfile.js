@@ -85,7 +85,7 @@ class CreateProfile extends Component {
       {name: 'Select your skill level', value: 0},
       {name: 'I do not know anything', value: 'idiot'},
       {name: 'I am just starting', value: 'junior'},
-      {name: 'I have a little experinece', value: 'juniorplust'},
+      {name: 'I have a little experinece', value: 'juniorplus'},
       {name: 'I have good experience', value: 'professional'},
       {name: 'I am an expert', value: 'expert'},
       {name: 'I am powerfull god', value: 'superidiot'},

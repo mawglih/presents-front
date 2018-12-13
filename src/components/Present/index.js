@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 import styles from './present.css';
 
 export default ({
@@ -8,6 +9,7 @@ export default ({
   price,
   description,
   occasion,
+  date,
 }) => (
   <div className={styles.container}>
     <div className={styles.content}>
@@ -32,6 +34,10 @@ export default ({
       <div className={styles.occasion}>
         <span>For the following occasion: </span>
         <span>{occasion}</span>
+        <div>
+          <span>{'Date is: '}</span>
+          <Moment format="YYYY/MM/DD">{date}</Moment>
+        </div>
       </div>
       <div className={styles.price}>
         <span>{'$ '}</span><span>{price}</span>

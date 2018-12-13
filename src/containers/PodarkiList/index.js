@@ -30,6 +30,7 @@ class PodarkiList extends Component {
               occasion={item.occasion}
               url={item.url}
               price={item.price}
+              date={item.date}
             />
           )) 
         ) : (<h2>No presents yet</h2>)}

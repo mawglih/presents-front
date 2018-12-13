@@ -15,6 +15,7 @@ export default ({
     <option
       key={encodeURIComponent(option.name)}
       value={option.value}
+      date={option.date}
     >
       {option.name}
     </option>

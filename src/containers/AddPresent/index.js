@@ -22,6 +22,7 @@ class AddPresent extends Component {
     url: '',
     occasion: '',
     price: 0,
+    date: null,
     error: {},
   }
   
@@ -49,6 +50,7 @@ class AddPresent extends Component {
       description: this.state.description,
       url: this.state.url,
       occasion: this.state.occasion,
+      date: this.state.date,
     };
     const {
       addPresentStart,
