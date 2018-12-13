@@ -22,7 +22,7 @@ class PodarkiList extends Component {
       <div className={styles.container}>
         {podarki ? (
           Object.values(podarki).map(item => (
-             <Present
+            <Present
               key={item._id}
               title={item.title}
               image={item.image}
@@ -30,7 +30,7 @@ class PodarkiList extends Component {
               occasion={item.occasion}
               url={item.url}
               price={item.price}
-             />
+            />
           )) 
         ) : (<h2>No presents yet</h2>)}
       </div>

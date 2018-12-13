@@ -10,6 +10,7 @@ import getPresentsSaga from './getPresents';
 import getProfileSaga from './getProfile';
 import createProfileSaga from './createProfile';
 import addOccasionSaga from './addOccasion';
+import getOccasionSaga from './getOccasions';
 
 export default function* rootSaga() {
   yield all([
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     ...getProfileSaga,
     ...createProfileSaga,
     ...addOccasionSaga,
+    ...getOccasionSaga,
   ]);
 }

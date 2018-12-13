@@ -6,6 +6,7 @@ import presents from './present';
 import getPresents from './getPresents';
 import profile from './profile';
 import occasion from './occasion';
+import getOccasion from './getOccasions';
 
 export default combineReducers({
   signin,
@@ -15,4 +16,5 @@ export default combineReducers({
   getPresents,
   profile,
   occasion,
+  getOccasion
 });

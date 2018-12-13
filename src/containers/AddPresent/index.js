@@ -8,7 +8,8 @@ import {
   addPresentStart
 } from 'actions/presents';
 import {
-  getProfileStart
+  getProfileStart,
+  getOccasionStart,
 } from 'actions/profile';
 import styles from './addpresents.css';
 import { PulseLoader } from 'react-spinners';
@@ -24,6 +25,15 @@ class AddPresent extends Component {
     error: {},
   }
   
+  componentDidMount() {
+    const {
+      getProfileStart,
+      getOccasionStart,
+    } = this.props;
+    getOccasionStart();
+    getProfileStart();
+  }
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -42,11 +52,9 @@ class AddPresent extends Component {
     };
     const {
       addPresentStart,
-      getProfileStart,
       history,
       error,
     } = this.props;
-    getProfileStart();
     addPresentStart(newPresent);
     console.log(newPresent);
     if(Object.keys(error).length === 0) {
@@ -65,13 +73,11 @@ class AddPresent extends Component {
   }
   render() {
     const {
+      occasions,
       loading,
       error,
-      profile: {
-        occasions,
-      } = {},
     } = this.props;
-    // console.log('in add present: ', occasions);
+    console.log('in add present: ', occasions);
     const {
       title,
       image,
@@ -187,6 +193,7 @@ const mapStateToProps = state => ({
   present: state.present,
   profile: state.profile.current,
   loading: state.profile.loading,
+  occasions: Object.values(state.getOccasion),
 });
 
-export default connect(mapStateToProps, { addPresentStart, getProfileStart })(AddPresent);
+export default connect(mapStateToProps, { addPresentStart, getProfileStart, getOccasionStart })(AddPresent);
