@@ -10,6 +10,8 @@ import PrivateRoute from 'common/PrivateRoute';
 import CreateProfile from 'containers/Profile/createProfile';
 import EditProfile from 'containers/Profile/editProfile';
 import AddOccasions from 'containers/Profile/addOccasions';
+import Occasions from 'containers/Occasions';
+import EditOccasion from 'containers/Occasions/editOccasion';
 import {
   SIGN_UP as SIGN_UP_URL,
   SIGN_IN as SIGN_IN_URL,
@@ -19,7 +21,9 @@ import {
   ADDPRESENT as ADDPRESENT_URL,
   CREATEPROFILE as CREATEPROFILE_URL,
   EDITPROFILE as EDITPROFILE_URL,
+  ADDOCCASIONS as ADDOCCASIONS_URL,
   OCCASIONS as OCCASIONS_URL,
+  OCCASION_BY_ID as OCCASION_BY_ID_URL,
 } from './constants';
 
 
@@ -61,8 +65,18 @@ export const Routes = () => (
     />
     <PrivateRoute
       exact
-      path={OCCASIONS_URL}
+      path={OCCASION_BY_ID_URL}
+      component={EditOccasion}
+    />
+    <PrivateRoute
+      exact
+      path={ADDOCCASIONS_URL}
       component={AddOccasions}
+    />
+    <PrivateRoute
+      exact
+      path={OCCASIONS_URL}
+      component={Occasions}
     />
     <Route
       exact

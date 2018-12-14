@@ -16,6 +16,10 @@ export const ADD_OCCASION_FAILURE = 'ADD_OCCASION_FAILURE';
 export const GET_OCCASION_START = 'GET_OCCASION_START';
 export const GET_OCCASION_SUCCESS = 'GET_OCCASION_SUCCESS';
 export const GET_OCCASION_FAILURE = 'GET_OCCASION_FAILURE';
+export const GET_OCCASION_BY_ID_START = 'GET_OCCASION_BY_ID_START';
+export const GET_OCCASION_BY_ID_SUCCESS = 'GET_OCCASION_BY_ID_SUCCESS';
+export const GET_OCCASION_BY_ID_FAILURE = 'GET_OCCASION_BY_ID_FAILURE';
+
 
 export const getProfileStart = () => {
   console.log('profile started')
@@ -115,6 +119,29 @@ export const getOccasionSuccess = ({ payload }) => {
 export const getOccasionFailure = ({ error }) => {
   return {
     type: GET_OCCASION_FAILURE,
+    payload: error,
+  };
+};
+
+export const getOccasionByIdStart = (payload) => {
+  console.log('occasion by id started: ', payload)
+  return {
+    type: GET_OCCASION_BY_ID_START,
+    payload,
+  };
+};
+
+export const get_BY_IDByIdSuccess = ({ payload }) => {
+  console.log('occasion by id success')
+  return {
+    type: GET_OCCASION_BY_ID_SUCCESS,
+    payload,
+  };
+};
+
+export const getOccasionByIdFailure = ({ error }) => {
+  return {
+    type: GET_OCCASION_BY_ID_FAILURE,
     payload: error,
   };
 };

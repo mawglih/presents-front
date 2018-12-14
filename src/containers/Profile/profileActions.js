@@ -3,7 +3,8 @@ import SVGIcon from 'components/SVGIcon';
 import { Link } from 'react-router-dom';
 import editSVG from './SvgIcons/pen.svg';
 import expSVG from './SvgIcons/keyboard.svg';
-import eduSVG from './SvgIcons/trophy.svg';
+import giftSVG from './SvgIcons/gift.svg';
+import editOccSVG from './SvgIcons/wrench.svg';
 import styles from './profile.css';
 
 export default () => {
@@ -20,7 +21,7 @@ export default () => {
         Edit Profile
       </Link>
       <Link
-        to="/occasions"
+        to="/addoccasions"
         className={styles.actionLinks}
       >
       < SVGIcon
@@ -35,9 +36,19 @@ export default () => {
       >
         <SVGIcon
           className={styles.icon}
-          icon={eduSVG}
+          icon={giftSVG}
         />
         Add Presents
+      </Link>
+      <Link
+        to="/occasions"
+        className={styles.actionLinks}
+      >
+        <SVGIcon
+          className={styles.icon}
+          icon={editOccSVG}
+        />
+        Edit Occasions
       </Link>
     </div>
   )

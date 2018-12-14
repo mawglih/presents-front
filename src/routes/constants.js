@@ -6,6 +6,8 @@ export const ADDPRESENT = '/addpresent';
 export const CREATEPROFILE = '/createprofile';
 export const EDITPROFILE = '/editprofile';
 export const OCCASIONS = '/occasions';
+export const ADDOCCASIONS = '/addoccasions';
+export const OCCASION_BY_ID = '/editoccasion/:id';
 export const HOME = '/';
 
 export default {
@@ -18,4 +20,6 @@ export default {
   CREATEPROFILE,
   EDITPROFILE,
   OCCASIONS,
+  ADDOCCASIONS,
+  OCCASION_BY_ID,
 };

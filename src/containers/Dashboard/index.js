@@ -5,8 +5,6 @@ import PodarkiList from 'containers/PodarkiList';
 import Profile from 'containers/Profile';
 import styles from './dashboard.css';
 
-
-
 class Dashboard extends Component {
   componentWillReceiveProps(nextProps) {
     const {

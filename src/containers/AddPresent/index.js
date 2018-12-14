@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import cn from 'classname';
 import TextInput from 'common/InputComponents/TextInput';
 import TextareaInput from 'common/InputComponents/TextareaInput';
@@ -195,7 +195,7 @@ const mapStateToProps = state => ({
   present: state.present,
   profile: state.profile.current,
   loading: state.profile.loading,
-  occasions: Object.values(state.getOccasion),
+  occasions: Object.values(state.getOccasion.occasions),
 });
 
 export default connect(mapStateToProps, { addPresentStart, getProfileStart, getOccasionStart })(AddPresent);
