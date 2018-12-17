@@ -70,3 +70,6 @@ label {
   justify-content: center;
   width: 50vw;
 }
+.profileActions {
+  margin-bottom: 20px;
+}

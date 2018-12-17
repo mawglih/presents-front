@@ -11,6 +11,7 @@ import getProfileSaga from './getProfile';
 import createProfileSaga from './createProfile';
 import addOccasionSaga from './addOccasion';
 import getOccasionSaga from './getOccasions';
+import deleteOccasionSaga from './deleteOccasion';
 
 export default function* rootSaga() {
   yield all([
@@ -24,5 +25,6 @@ export default function* rootSaga() {
     ...createProfileSaga,
     ...addOccasionSaga,
     ...getOccasionSaga,
+    ...deleteOccasionSaga,
   ]);
 }

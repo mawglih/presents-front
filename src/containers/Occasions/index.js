@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getOccasionStart } from 'actions/profile';
+import {
+  getOccasionStart,
+  deleteOccasionStart,
+} from 'actions/profile';
 import Occasion from 'components/Occasion';
 import { ScaleLoader } from 'react-spinners';
 import styles from './occasions.css';
@@ -11,6 +14,18 @@ class Occasions extends Component {
       getOccasionStart,
     } = this.props;
     getOccasionStart();
+  }
+
+  handleDelete = (id) => {
+    const {
+      history,
+      error,
+      deleteOccasionStart,
+    } = this.props;
+    deleteOccasionStart(id);
+    if(Object.keys(error).length === 0) {
+      history.push('/occasions');
+    }
   }
 
   render() {
@@ -29,7 +44,7 @@ class Occasions extends Component {
       />);
     } else {
       OccasionItems = (
-      Object.values(occasion.occasions).map(item => {
+      occasion.occasions.map(item => {
         return (
           <Occasion
             key={item._id}
@@ -37,6 +52,7 @@ class Occasions extends Component {
             title={item.title}
             description={item.description}
             date={item.at}
+            handleClick={this.handleDelete}
           />
         )}));
     }
@@ -53,7 +69,8 @@ class Occasions extends Component {
 
 const mapStateToProps = (state) => ({
   occasion: state.getOccasion,
+  error: state.error,
 });
 
-export default connect(mapStateToProps, { getOccasionStart } )(Occasions);
+export default connect(mapStateToProps, { getOccasionStart, deleteOccasionStart } )(Occasions);
 

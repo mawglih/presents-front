@@ -10,9 +10,7 @@ import {
   CREATE_PROFILE_START,
   CREATE_PROFILE_SUCCESS,
 } from 'actions/profile';
-
-
-const URL = 'http://localhost:5000/api/profile/';
+import { API } from 'utils/constants';
 
 export function* createProfileStartSaga({ payload }) {
   const {
@@ -54,20 +52,17 @@ export function* createProfileStartSaga({ payload }) {
         instagram,
       },
       method: 'post',
-      url: URL,
+      url: `${API}profile/`,
     });
     if (status >= 200 && status < 300) {
-      yield console.log('data in axios response profile add: ', data);
       yield put({
         type: CREATE_PROFILE_SUCCESS,
         payload: data,
       });
-      yield console.log('PROFILE saga: ', data)
     } else {
       throw data;
     }
   } catch (error) {
-    yield console.log('PROFILE saga error: ', error);
     yield put({
       type: CREATE_PROFILE_FAILURE,
       payload: error,

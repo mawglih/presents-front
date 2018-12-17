@@ -19,7 +19,12 @@ export const GET_OCCASION_FAILURE = 'GET_OCCASION_FAILURE';
 export const GET_OCCASION_BY_ID_START = 'GET_OCCASION_BY_ID_START';
 export const GET_OCCASION_BY_ID_SUCCESS = 'GET_OCCASION_BY_ID_SUCCESS';
 export const GET_OCCASION_BY_ID_FAILURE = 'GET_OCCASION_BY_ID_FAILURE';
-
+export const DELETE_OCCASION_START = 'DELETE_OCCASION_START';
+export const DELETE_OCCASION_SUCCESS = 'DELETE_OCCASION_SUCCESS';
+export const DELETE_OCCASION_FAILURE = 'DELETE_OCCASION_FAILURE';
+export const EDIT_OCCASION_START = 'EDIT_OCCASION_START';
+export const EDIT_OCCASION_SUCCESS = 'EDIT_OCCASION_SUCCESS';
+export const EDIT_OCCASION_FAILURE = 'DELETE_OCCASION_FAILURE';
 
 export const getProfileStart = () => {
   console.log('profile started')
@@ -131,7 +136,7 @@ export const getOccasionByIdStart = (payload) => {
   };
 };
 
-export const get_BY_IDByIdSuccess = ({ payload }) => {
+export const getOccasionByIdSuccess = ({ payload }) => {
   console.log('occasion by id success')
   return {
     type: GET_OCCASION_BY_ID_SUCCESS,
@@ -142,6 +147,54 @@ export const get_BY_IDByIdSuccess = ({ payload }) => {
 export const getOccasionByIdFailure = ({ error }) => {
   return {
     type: GET_OCCASION_BY_ID_FAILURE,
+    payload: error,
+  };
+};
+
+export const deleteOccasionStart = (payload ) => {
+  console.log('delete occasion action started');
+  return {
+    type: DELETE_OCCASION_START,
+    payload,
+  };
+};
+
+export const deleteOccasionSuccess = ({ payload }) => {
+  console.log('delete occasion action success: ', payload);
+  return {
+    type: DELETE_OCCASION_SUCCESS,
+    payload,
+  };
+};
+
+export const deleteOccasionFailure = ({ error }) => {
+  console.log('delete occasion action failure: ', error);
+  return {
+    type: DELETE_OCCASION_FAILURE,
+    payload: error,
+  };
+};
+
+export const editOccasionStart = (payload ) => {
+  console.log('edit occasion action started');
+  return {
+    type: EDIT_OCCASION_START,
+    payload,
+  };
+};
+
+export const editOccasionSuccess = ({ payload }) => {
+  console.log('edit occasion action success: ', payload);
+  return {
+    type: EDIT_OCCASION_SUCCESS,
+    payload,
+  };
+};
+
+export const editOccasionFailure = ({ error }) => {
+  console.log('edit occasion action failure: ', error);
+  return {
+    type: EDIT_OCCASION_FAILURE,
     payload: error,
   };
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 import styles from './present.css';
 
 export default ({
@@ -10,11 +11,14 @@ export default ({
   description,
   occasion,
   date,
+  id,
 }) => (
   <div className={styles.container}>
     <div className={styles.content}>
       <div className={styles.title}>
-        <h3>{title}</h3>
+        <Link to={`/present/${id}`}>
+          <h3>{title}</h3>
+        </Link>
       </div>
       <div className={styles.image}>
         <img
@@ -35,7 +39,7 @@ export default ({
         <span>For the following occasion: </span>
         <span>{occasion}</span>
         <div>
-          <span>{'Date is: '}</span>
+          <span>{'Date of occasion is: '}</span>
           <Moment format="YYYY/MM/DD">{date}</Moment>
         </div>
       </div>

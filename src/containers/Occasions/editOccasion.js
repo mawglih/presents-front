@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  addOccasionStart,
+  editOccasionStart,
   getOccasionByIdStart
 } from 'actions/profile';
 import TextInput from 'common/InputComponents/TextInput';
 import TextareaInput from 'common/InputComponents/TextareaInput';
+import isEmpty from 'utils/isEmpty';
 import styles from './occasions.css';
 
 class EditOccasion extends Component {
@@ -15,13 +16,13 @@ class EditOccasion extends Component {
     description: '',
     special: false,
     errors: {},
-  }
+  };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -33,16 +34,24 @@ class EditOccasion extends Component {
     };
 
     const {
-      addOccasionStart,
+      editOccasionStart,
       history,
       match,
     } = this.props;
     console.log('new occasion is: ', newOccasion);
     console.log('id is: ', match.params.id);
-    addOccasionStart(newOccasion);
+    editOccasionStart(newOccasion);
     history.push('/dashboard');
-  }
+  };
 
+  convertDate = (input) => {
+    let date = new Date(input);
+    let year = date.getFullYear().toString();
+    let month = (date.getMonth() + 101).toString().substring(1);
+    let day = (date.getDate() + 100).toString().substring(1);
+    return year + "-" + month + "-" + day;
+  }
+  
   componentWillReceiveProps(nextProps) {
     const {
       history,
@@ -51,12 +60,27 @@ class EditOccasion extends Component {
     if (nextProps.user && error === null) {
       history.push('/signin');
     }
+    if(nextProps.occasionById) {
+      const occasion = nextProps.occasionById;
+      occasion.at = !isEmpty(occasion.at) ? occasion.at : '';
+      occasion.description = !isEmpty(occasion.description) ? occasion.description : '';
+      occasion.special = !isEmpty(occasion.special) ? occasion.special : false;
+      occasion.title = !isEmpty(occasion.title) ? occasion.title : '';
+      this.setState({
+        title: occasion.title,
+        at: this.convertDate(occasion.at),
+        description: occasion.description,
+        special: occasion.special,
+      });
+    }
   }
+
   componentDidMount() {
     const {
       getOccasionByIdStart,
       match,
     } = this.props;
+    console.log('in edit CDM occasion match: ', match.params.id);
     getOccasionByIdStart(match.params.id);
   }
 
@@ -69,9 +93,12 @@ class EditOccasion extends Component {
     } = this.state;
     const {
       error,
-      match,
+      // occasionById,
+      // occ,
     } = this.props;
-    console.log('in edit occasion match: ', match.params.id);
+    // console.log('in edit occasion occasion by id: ', occ);
+    // console.log('in edit occasion loading: ', loading);
+    // console.log('in edit occasion occasion by id: ', occ);
     return(
       <div className={styles.container}>
         <h1>Edit your occasion</h1>
@@ -128,7 +155,7 @@ class EditOccasion extends Component {
                 className={styles.formSubmit}
                 type="submit"
               >
-                Submit
+                Update
               </button>
             </div>
           </form>
@@ -142,8 +169,9 @@ const mapStateToProps = (state) => {
   return {
     auth: state.signin,
     error: state.error,
-    occasion: state.getOccasions,
+    // occasion: state.getOccasions,
+    occasionById: state.getOccasion.occasion,
   }
 }
 
-export default connect(mapStateToProps, { addOccasionStart, getOccasionByIdStart })(EditOccasion);
+export default connect(mapStateToProps, { editOccasionStart, getOccasionByIdStart })(EditOccasion);

@@ -5,7 +5,8 @@ import TextareaInput from 'common/InputComponents/TextareaInput';
 import SelectInput from 'common/InputComponents/SelectInput';
 import { connect } from 'react-redux';
 import {
-  addPresentStart,
+  editPresentStart,
+  getPresentByIdStart,
   getPresentsStart,
 } from 'actions/presents';
 import {
@@ -13,10 +14,10 @@ import {
   getOccasionStart,
 } from 'actions/profile';
 import { PulseLoader } from 'react-spinners';
+import isEmpty from 'utils/isEmpty';
 import styles from './addpresents.css';
 
-
-class AddPresent extends Component {
+export class EditPresent extends Component {
   state = {
     title: '',
     image: '',
@@ -24,7 +25,7 @@ class AddPresent extends Component {
     url: '',
     occasion: '',
     price: 0,
-    date: null,
+    id: '',
     error: {},
   }
   
@@ -32,9 +33,12 @@ class AddPresent extends Component {
     const {
       getProfileStart,
       getOccasionStart,
+      getPresentByIdStart,
+      match,
     } = this.props;
     getOccasionStart();
     getProfileStart();
+    getPresentByIdStart(match.params.id);
   }
 
   handleChange = e => {
@@ -45,23 +49,31 @@ class AddPresent extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const {
+      title,
+      image,
+      price,
+      description,
+      url,
+      occasion,
+      id,
+    } = this.state;
     const newPresent = {
-      title: this.state.title,
-      image: this.state.image,
-      price: this.state.price,
-      description: this.state.description,
-      url: this.state.url,
-      occasion: this.state.occasion,
-      date: this.state.date,
+      title,
+      image,
+      price,
+      description,
+      url,
+      occasion,
+      id,
     };
     const {
-      addPresentStart,
+      editPresentStart,
       getPresentsStart,
       history,
       error,
     } = this.props;
-    addPresentStart(newPresent);
-    console.log(newPresent);
+    editPresentStart(newPresent);
     if(Object.keys(error).length === 0) {
       getPresentsStart();
       history.push('/dashboard');
@@ -71,10 +83,30 @@ class AddPresent extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       history,
-      error
+      error,
+      match,
     } = this.props;
     if (nextProps.user && error === null) {
       history.push('/signin');
+    }
+    if(nextProps.presentById) {
+      const id = match.params.id;
+      const present = nextProps.presentById;
+      present.title = !isEmpty(present.title) ? present.title : '';
+      present.image = !isEmpty(present.image) ? present.image : '';
+      present.price = !isEmpty(present.price) ? present.price : 0;
+      present.description = !isEmpty(present.description) ? present.description : '';
+      present.url = !isEmpty(present.url) ? present.url : '';
+      present.occasion = !isEmpty(present.occasion) ? present.occasion : '';
+      this.setState({
+        title: present.title,
+        image: present.image,
+        description: present.description,
+        url: present.url,
+        occasion: present.occasion,
+        price: present.price,
+        id,
+      });
     }
   }
   render() {
@@ -93,7 +125,7 @@ class AddPresent extends Component {
       occasion,
     } = this.state;
     let Occasions = [
-      {name: 'Select an occasion for your present', value: 0, date: '', special: false},
+      {name: 'Select an occasion for your present', value: 0, date: null, special: false},
     ];
     if(occasions != null) {
       occasions.map(item => {
@@ -107,7 +139,7 @@ class AddPresent extends Component {
 
     return (
       <div className={styles.container}>
-        <h1> Add present</h1>
+        <h1>Edit present</h1>
         {loading ? (
           <PulseLoader
             margin="10px"
@@ -196,14 +228,18 @@ const mapStateToProps = state => ({
   user: state.signup.user,
   error: state.error,
   auth: state.signin.isAuthenticated,
+  // present: state.present,
   profile: state.profile.current,
   loading: state.profile.loading,
-  occasions: state.getOccasion.occasions,
+  occasions: Object.values(state.getOccasion.occasions),
+  presentById: state.getPresents.present,
 });
 
-export default connect(mapStateToProps, {
-  addPresentStart,
-  getProfileStart,
-  getOccasionStart,
-  getPresentsStart
-})(AddPresent);
+export default connect(
+  mapStateToProps, {
+    editPresentStart,
+    getProfileStart, 
+    getOccasionStart,
+    getPresentByIdStart,
+    getPresentsStart,
+   })(EditPresent);

@@ -11,8 +11,9 @@ import {
   // PROFILE_NOT_FOUND,
 } from 'actions/profile';
  import axios from 'axios';
+ import { API } from 'utils/constants';
 
- const URL = 'http://localhost:5000/api/profile/';
+const URL = `${API}profile/`;
 
  export function* getProfileStartSaga() {
    yield put({

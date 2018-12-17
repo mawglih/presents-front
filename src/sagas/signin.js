@@ -12,8 +12,9 @@ import {
   SIGNIN_START,
   SIGNIN_SUCCESS,
 } from 'actions';
+import { API } from 'utils/constants';
 
-const URL = 'http://localhost:5000/api/users/login';
+const URL = `${API}users/login`;
 
 export function* signinStartSaga({ payload }) {
   const {

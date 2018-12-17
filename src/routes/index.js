@@ -12,6 +12,7 @@ import EditProfile from 'containers/Profile/editProfile';
 import AddOccasions from 'containers/Profile/addOccasions';
 import Occasions from 'containers/Occasions';
 import EditOccasion from 'containers/Occasions/editOccasion';
+import EditPresent from 'containers/AddPresent/editPresent';
 import {
   SIGN_UP as SIGN_UP_URL,
   SIGN_IN as SIGN_IN_URL,
@@ -24,6 +25,7 @@ import {
   ADDOCCASIONS as ADDOCCASIONS_URL,
   OCCASIONS as OCCASIONS_URL,
   OCCASION_BY_ID as OCCASION_BY_ID_URL,
+  PRESENT_BY_ID as PRESENT_BY_ID_URL,
 } from './constants';
 
 
@@ -67,6 +69,11 @@ export const Routes = () => (
       exact
       path={OCCASION_BY_ID_URL}
       component={EditOccasion}
+    />
+    <PrivateRoute
+      exact
+      path={PRESENT_BY_ID_URL}
+      component={EditPresent}
     />
     <PrivateRoute
       exact

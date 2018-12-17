@@ -8,6 +8,7 @@ export const EDITPROFILE = '/editprofile';
 export const OCCASIONS = '/occasions';
 export const ADDOCCASIONS = '/addoccasions';
 export const OCCASION_BY_ID = '/editoccasion/:id';
+export const PRESENT_BY_ID = '/present/:id';
 export const HOME = '/';
 
 export default {
@@ -22,4 +23,5 @@ export default {
   OCCASIONS,
   ADDOCCASIONS,
   OCCASION_BY_ID,
+  PRESENT_BY_ID,
 };

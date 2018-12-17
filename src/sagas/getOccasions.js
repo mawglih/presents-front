@@ -2,6 +2,7 @@ import {
   call,
   put,
   takeEvery,
+  takeLatest,
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
@@ -12,8 +13,7 @@ import {
   GET_OCCASION_BY_ID_SUCCESS,
   GET_OCCASION_BY_ID_FAILURE,
 } from 'actions/profile';
-
-const URL = 'http://localhost:5000/api/profile/';
+import { API } from 'utils/constants';
 
 export function* getOccasionStartSaga() {
   try {
@@ -22,7 +22,7 @@ export function* getOccasionStartSaga() {
       status,
     } = yield call(axios,{
       method: 'get',
-      url: URL,
+      url: `${API}profile/`,
     });
     if (status >= 200 && status < 300) {
       yield console.log('data in axios response profile get: ', data.occasions);
@@ -41,7 +41,6 @@ export function* getOccasionStartSaga() {
     });
   }
 }
-const URL2 = 'http://localhost:5000/api/profile/occasions/';
 
 export function* getOccasionByIdStartSaga({ payload: id }) {
   try {
@@ -50,10 +49,7 @@ export function* getOccasionByIdStartSaga({ payload: id }) {
       status,
     } = yield call(axios,{
       method: 'get',
-      url: URL2,
-      params: {
-        id,
-      },
+      url: `${API}profile/occasions/${id}`,
     });
     if (status >= 200 && status < 300) {
       yield console.log('data in axios response occasion by id get: ', data);
@@ -75,7 +71,7 @@ export function* getOccasionByIdStartSaga({ payload: id }) {
 
 export function* getOccasionSaga() {
   yield takeEvery(GET_OCCASION_START, getOccasionStartSaga);
-  yield takeEvery(GET_OCCASION_BY_ID_START, getOccasionByIdStartSaga);
+  yield takeLatest(GET_OCCASION_BY_ID_START, getOccasionByIdStartSaga);
 }
 
 export default [

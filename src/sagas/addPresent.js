@@ -1,6 +1,6 @@
 import {
   call,
-  apply,
+  // apply,
   put,
   takeEvery,
 } from 'redux-saga/effects';
@@ -9,10 +9,11 @@ import {
   ADD_PRESENT_FAILURE,
   ADD_PRESENT_START,
   ADD_PRESENT_SUCCESS,
+  EDIT_PRESENT_FAILURE,
+  EDIT_PRESENT_START,
+  EDIT_PRESENT_SUCCESS,
 } from 'actions/presents';
-
-
-const URL = 'http://localhost:5000/api/podarki/';
+import { API } from 'utils/constants';
 
 export function* addPresentStartSaga({ payload }) {
   const {
@@ -24,9 +25,7 @@ export function* addPresentStartSaga({ payload }) {
     occasion,
   } = payload;
   try {
-    const token = yield apply(localStorage, localStorage.getItem,['jwtToken']);
-    yield console.log('additem token is: ', token);
-    yield console.log('saga axios defaults: ', axios.defaults.headers.common);
+    // const token = yield apply(localStorage, localStorage.getItem,['jwtToken']);
     const {
       data,
       status,
@@ -40,20 +39,17 @@ export function* addPresentStartSaga({ payload }) {
         occasion,
       },
       method: 'post',
-      url: URL,
+      url: `${API}podarki/`,
     });
     if (status >= 200 && status < 300) {
-      yield console.log('data in axios response present add: ', data);
       yield put({
         type: ADD_PRESENT_SUCCESS,
         payload: data,
       });
-      yield console.log('present saga: ', data)
     } else {
       throw data;
     }
   } catch (error) {
-    yield console.log('present saga error: ', error);
     yield put({
       type: ADD_PRESENT_FAILURE,
       payload: error,
@@ -61,8 +57,52 @@ export function* addPresentStartSaga({ payload }) {
   }
 }
 
+export function* editPresentStartSaga({ payload }) {
+  const {
+    id,
+    title,
+    url,
+    price,
+    image,
+    description,
+    occasion,
+  } = payload;
+  try {
+    // const token = yield apply(localStorage, localStorage.getItem,['jwtToken']);
+    const {
+      data,
+      status,
+    } = yield call(axios,{
+      data: {
+        title,
+        url,
+        price,
+        image,
+        description,
+        occasion,
+      },
+      method: 'put',
+      url: `${API}podarki/${id}`,
+    });
+    if (status >= 200 && status < 300) {
+      yield put({
+        type: EDIT_PRESENT_SUCCESS,
+        payload: data,
+      });
+    } else {
+      throw data;
+    }
+  } catch (error) {
+    yield put({
+      type: EDIT_PRESENT_FAILURE,
+      payload: error,
+    });
+  }
+}
+
 export function* addPresentSaga() {
   yield takeEvery(ADD_PRESENT_START, addPresentStartSaga);
+  yield takeEvery(EDIT_PRESENT_START, editPresentStartSaga);
 }
 
 export default addPresentSaga();

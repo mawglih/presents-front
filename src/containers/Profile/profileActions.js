@@ -9,7 +9,7 @@ import styles from './profile.css';
 
 export default () => {
   return (
-    <div>
+    <div className={styles.profileActions}>
       <Link
         to="/editprofile"
         className={styles.actionLinks}

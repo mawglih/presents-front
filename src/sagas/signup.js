@@ -9,8 +9,9 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
 } from 'actions';
+import { API } from 'utils/constants';
 
-const URL = 'http://localhost:5000/api/users/register';
+const URL = `${API}users/register`;
 
 export function* signupStartSaga({ payload }) {
   const {

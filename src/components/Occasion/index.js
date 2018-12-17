@@ -27,7 +27,7 @@ const Occasion = ({
       </div>
       <button
         className={styles.button}
-        onClick={handleClick}
+        onClick={() => handleClick(id)}
       >
         Delete
       </button>

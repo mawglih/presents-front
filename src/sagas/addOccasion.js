@@ -8,10 +8,11 @@ import {
   ADD_OCCASION_FAILURE,
   ADD_OCCASION_START,
   ADD_OCCASION_SUCCESS,
+  EDIT_OCCASION_FAILURE,
+  EDIT_OCCASION_START,
+  EDIT_OCCASION_SUCCESS,
 } from 'actions/profile';
-
-
-const URL = 'http://localhost:5000/api/profile/occasions/';
+import { API } from 'utils/constants';
 
 export function* addOccasionStartSaga({ payload }) {
   const {
@@ -32,20 +33,17 @@ export function* addOccasionStartSaga({ payload }) {
         special,
       },
       method: 'post',
-      url: URL,
+      url: `${API}profile/occasions/`,
     });
     if (status >= 200 && status < 300) {
-      yield console.log('data in axios response occasion add: ', data);
       yield put({
         type: ADD_OCCASION_SUCCESS,
         payload: data,
       });
-      yield console.log('occasion saga: ', data)
     } else {
       throw data;
     }
   } catch (error) {
-    yield console.log('occasion saga error: ', error);
     yield put({
       type: ADD_OCCASION_FAILURE,
       payload: error,
@@ -53,8 +51,48 @@ export function* addOccasionStartSaga({ payload }) {
   }
 }
 
+export function* editOccasionStartSaga({ payload }) {
+  const {
+    id,
+    title,
+    at,
+    description,
+    special,
+  } = payload;
+  try {
+    // const token = yield apply(localStorage, localStorage.getItem,['jwtToken']);
+    const {
+      data,
+      status,
+    } = yield call(axios,{
+      data: {
+        title,
+      at,
+      description,
+      special,
+      },
+      method: 'put',
+      url: `${API}profile/occasions/${id}`,
+    });
+    if (status >= 200 && status < 300) {
+      yield put({
+        type: EDIT_OCCASION_SUCCESS,
+        payload: data,
+      });
+    } else {
+      throw data;
+    }
+  } catch (error) {
+    yield put({
+      type: EDIT_OCCASION_FAILURE,
+      payload: error,
+    });
+  }
+}
+
 export function* addOccasionSaga() {
   yield takeEvery(ADD_OCCASION_START, addOccasionStartSaga);
+  yield takeEvery(EDIT_OCCASION_START, editOccasionStartSaga);
 }
 
 export default addOccasionSaga();
