@@ -15,9 +15,14 @@ import styles from './header.css';
 
   logout = e => {
     e.preventDefault();
-    this.props.logoutStart();
+    const {
+      logoutStart,
+      clearCurrentProfile,
+    } = this.props;
+    logoutStart();
     // window.location.href = '/Signin';
-    this.props.clearCurrentProfile();
+    clearCurrentProfile();
+    window.location.href = '/Signin'
   }
 
   render() {
