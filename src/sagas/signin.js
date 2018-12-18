@@ -8,7 +8,7 @@ import axios from 'axios';
 import setAuthToken from 'utils/setAuthToken';
 import {
   setCurrentUser,
-  SIGNIN_FAILURE,
+  GET_FAILURE,
   SIGNIN_START,
   SIGNIN_SUCCESS,
 } from 'actions';
@@ -47,7 +47,7 @@ export function* signinStartSaga({ payload }) {
     }
   } catch (err) {
     yield put({
-      type: SIGNIN_FAILURE,
+      type: GET_FAILURE,
       payload: err,
     });
   }

@@ -10,7 +10,7 @@ class Signup extends Component {
   state = {
     username: '',
     email: '',
-    password: '',
+    password1: '',
     password2: '',
   };
 
@@ -25,14 +25,19 @@ class Signup extends Component {
     const newUser = {
       name: this.state.username,
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password1,
       password2: this.state.password2,
     };
     const {
       signupStart,
+      error,
+      history,
     } = this.props;
     signupStart(newUser);
     console.log(newUser);
+    if (error === null) {
+      history.push('/signin');
+    }
   }
 
   componentDidMount() {
@@ -43,7 +48,7 @@ class Signup extends Component {
     if (auth) {
       history.push('/dashboard');
     }
-  } 
+  }
 
   componentWillReceiveProps(nextProps) {
     const {
@@ -61,7 +66,7 @@ class Signup extends Component {
     } = this.props;
     const {
       username,
-      password,
+      password1,
       password2,
       email,
     } = this.state;
@@ -95,12 +100,12 @@ class Signup extends Component {
             />
             <TextInput
               label="Password"
-              value={password}
+              value={password1}
               type="password"
-              placeholder="Your password"
+              placeholder="Your password (min 6 charachters)"
               onChange={this.handleChange}
               name="password1"
-              error={error.password}
+              error={error.password2}
             />
             <TextInput
               label="Password Confirm"
@@ -109,7 +114,7 @@ class Signup extends Component {
               placeholder="Retype your password"
               onChange={this.handleChange}
               name="password2"
-              error={error.password}
+              error={error.password2}
             />
             <div>
               <button

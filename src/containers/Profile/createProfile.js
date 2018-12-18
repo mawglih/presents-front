@@ -21,6 +21,7 @@ class CreateProfile extends Component {
     location: '',
     statusP: '',
     skills: '',
+    level: "",
     bio: '',
     githubusername: '',
     facebook: '',
@@ -47,7 +48,7 @@ class CreateProfile extends Component {
       location: this.state.location,
       statusP: this.state.statusP,
       skills: this.state.skills,
-      skillLevel: this.state.skillLevel,
+      skillLevel: this.state.level,
       bio: this.state.bio,
       githubusername: this.state.githubusername,
       facebook: this.state.facebook,
@@ -58,10 +59,13 @@ class CreateProfile extends Component {
     const {
       createProfileStart,
       history,
+      error,
     } = this.props;
     console.log('new profile is: ', newProfile);
     createProfileStart(newProfile);
-    history.push('/dashboard');
+    if (error === null) {
+      history.push('/dashboard');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,7 +85,7 @@ class CreateProfile extends Component {
       {name: 'Student', value: 'student'},
       {name: 'Married with children', value: 'married'},
     ];
-    const Skills = [
+    const Level = [
       {name: 'Select your skill level', value: 0},
       {name: 'I do not know anything', value: 'idiot'},
       {name: 'I am just starting', value: 'junior'},
@@ -101,7 +105,7 @@ class CreateProfile extends Component {
       location,
       statusP,
       skills,
-      skillLevel,
+      level,
       bio,
       githubusername,
       facebook,
@@ -193,11 +197,11 @@ class CreateProfile extends Component {
             />
             <SelectInput
               label="Your professional level"
-              value={skillLevel}
+              value={level}
               onChange={this.handleChange}
               name="skills"
-              error={error.skillLevel}
-              options={Skills}
+              error={error.level}
+              options={Level}
               info="Select your skill level if you better than ape"
             />
             <TextInput

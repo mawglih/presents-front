@@ -6,7 +6,9 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  CREATE_PROFILE_FAILURE,
+  GET_FAILURE,
+} from 'actions';
+import {
   CREATE_PROFILE_START,
   CREATE_PROFILE_SUCCESS,
 } from 'actions/profile';
@@ -64,7 +66,7 @@ export function* createProfileStartSaga({ payload }) {
     }
   } catch (error) {
     yield put({
-      type: CREATE_PROFILE_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }

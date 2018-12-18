@@ -6,7 +6,7 @@ import SelectInput from 'common/InputComponents/SelectInput';
 import { connect } from 'react-redux';
 import {
   addPresentStart,
-  getPresentsStart,
+  getPresentsByUserStart,
 } from 'actions/presents';
 import {
   getProfileStart,
@@ -24,7 +24,7 @@ class AddPresent extends Component {
     url: '',
     occasion: '',
     price: 0,
-    date: null,
+    date: '',
     error: {},
   }
   
@@ -56,27 +56,16 @@ class AddPresent extends Component {
     };
     const {
       addPresentStart,
-      getPresentsStart,
-      history,
       error,
+      history,
     } = this.props;
     addPresentStart(newPresent);
-    console.log(newPresent);
-    if(Object.keys(error).length === 0) {
-      getPresentsStart();
+    if (Object.keys(error).length === 0) {
+      getPresentsByUserStart();
       history.push('/dashboard');
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      history,
-      error
-    } = this.props;
-    if (nextProps.user && error === null) {
-      history.push('/signin');
-    }
-  }
   render() {
     const {
       occasions,
@@ -124,7 +113,7 @@ class AddPresent extends Component {
             )}
           >
             <TextInput
-              label="Title"
+              label="* Title"
               value={title}
               type="title"
               placeholder="Your present title"
@@ -133,7 +122,7 @@ class AddPresent extends Component {
               error={error.title}
             />
             <TextInput
-              label="Image"
+              label="* Image"
               value={image}
               type="text"
               placeholder="Link to the image of the present"
@@ -159,7 +148,7 @@ class AddPresent extends Component {
               error={error.description}
             />
             <TextInput
-              label="URL to store"
+              label="* URL to store"
               value={url}
               type="text"
               placeholder="Enter url to purchase a present"
@@ -168,7 +157,7 @@ class AddPresent extends Component {
               error={error.url}
             />
             <SelectInput
-              label="Occasion"
+              label="* Occasion"
               value={occasion}
               placeholder="Select your occasion"
               onChange={this.handleChange}
@@ -180,6 +169,7 @@ class AddPresent extends Component {
               <button
                 className={styles.formSubmit}
                 type="submit"
+                disabled={Object.keys(Occasions).length === 0}
               >
                 Submit
               </button>
@@ -205,5 +195,5 @@ export default connect(mapStateToProps, {
   addPresentStart,
   getProfileStart,
   getOccasionStart,
-  getPresentsStart
+  getPresentsByUserStart,
 })(AddPresent);

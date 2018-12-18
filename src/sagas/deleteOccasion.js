@@ -4,8 +4,10 @@ import {
   takeEvery,
 } from 'redux-saga/effects';
 import axios from 'axios';
+import { 
+  GET_FAILURE,
+} from 'actions';
 import {
-  DELETE_OCCASION_FAILURE,
   DELETE_OCCASION_START,
   DELETE_OCCASION_SUCCESS,
   getOccasionStart,
@@ -32,7 +34,7 @@ export function* deleteOccasionStartSaga({ payload: id }) {
     }
   } catch (error) {
     yield put({
-      type: DELETE_OCCASION_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }

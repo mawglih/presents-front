@@ -1,18 +1,18 @@
 export const ADD_PRESENT_START = 'ADD_PRESENT_START';
 export const ADD_PRESENT_SUCCESS = 'ADD_PRESENT_SUCCESS';
-export const ADD_PRESENT_FAILURE = 'ADD_PRESENT_FAILURE';
+// export const ADD_PRESENT_FAILURE = 'ADD_PRESENT_FAILURE';
 export const GET_PRESENTS_START = 'GET_PRESENTS_START';
 export const GET_PRESENTS_SUCCESS = 'GET_PRESENTS_SUCCESS';
-export const GET_PRESENTS_FAILURE = 'GET_PRESENTS_FAILURE';
+// export const GET_PRESENTS_FAILURE = 'GET_PRESENTS_FAILURE';
 export const GET_PRESENT_BY_ID_START = 'GET_PRESENT_BY_ID_START';
 export const GET_PRESENT_BY_ID_SUCCESS = 'GET_PRESENT_BY_ID_SUCCESS';
-export const GET_PRESENT_BY_ID_FAILURE = 'GET_PRESENT_BY_ID_FAILURE';
+// export const GET_PRESENT_BY_ID_FAILURE = 'GET_PRESENT_BY_ID_FAILURE';
 export const EDIT_PRESENT_START = 'EDIT_PRESENT_START';
 export const EDIT_PRESENT_SUCCESS = 'EDIT_PRESENT_SUCCESS';
-export const EDIT_PRESENT_FAILURE = 'EDIT_PRESENT_FAILURE';
+// export const EDIT_PRESENT_FAILURE = 'EDIT_PRESENT_FAILURE';
 export const GET_PRESENTS_BY_USERID_START = 'GET_PRESENTS_BY_USERID_START';
 export const GET_PRESENTS_BY_USERID_SUCCESS = 'GET_PRESENTS_BY_USERID_SUCCESS';
-export const GET_PRESENTS_BY_USERID_FAILURE = 'GET_PRESENTS_BY_USERID_FAILURE';
+// export const GET_PRESENTS_BY_USERID_FAILURE = 'GET_PRESENTS_BY_USERID_FAILURE';
 
 
 export const addPresentStart = (payload) => {
@@ -30,12 +30,12 @@ export const addPresentSuccess = ({ payload }) => {
   };
 };
 
-export const addPresentFailure = ({ payload }) => {
-  return {
-    type: ADD_PRESENT_FAILURE,
-    error: payload,
-  };
-};
+// export const addPresentFailure = ({ payload }) => {
+//   return {
+//     type: ADD_PRESENT_FAILURE,
+//     error: payload,
+//   };
+// };
 
 export const getPresentsStart = () => {
   return {
@@ -51,12 +51,12 @@ export const getPresentsSuccess = ( payload ) => {
   };
 };
 
-export const getPresentsFailure = ({ payload }) => {
-  return {
-  type: GET_PRESENTS_FAILURE,
-  error: payload,
-  };
-};
+// export const getPresentsFailure = ({ payload }) => {
+//   return {
+//   type: GET_PRESENTS_FAILURE,
+//   error: payload,
+//   };
+// };
 
 export const getPresentByIdStart = ( payload ) => {
   console.log('get present by id action: ', payload);
@@ -74,12 +74,12 @@ export const getPresentByIdSuccess = ( payload ) => {
   };
 };
 
-export const getPresentByIdFailure = ({ payload }) => {
-  return {
-  type: GET_PRESENT_BY_ID_FAILURE,
-  error: payload,
-  };
-};
+// export const getPresentByIdFailure = ({ payload }) => {
+//   return {
+//   type: GET_PRESENT_BY_ID_FAILURE,
+//   error: payload,
+//   };
+// };
 
 export const editPresentStart = (payload) => {
   console.log('editpresent action payload: ', payload);
@@ -96,12 +96,12 @@ export const editPresentSuccess = ({ payload }) => {
   };
 };
 
-export const editPresentFailure = ({ payload }) => {
-  return {
-    type: EDIT_PRESENT_FAILURE,
-    error: payload,
-  };
-};
+// export const editPresentFailure = ({ payload }) => {
+//   return {
+//     type: EDIT_PRESENT_FAILURE,
+//     error: payload,
+//   };
+// };
 
 export const getPresentsByUserStart = ( payload ) => {
   console.log('get present by user by id action: ', payload);
@@ -119,9 +119,9 @@ export const getPresentsByUserSuccess = ( payload ) => {
   };
 };
 
-export const getPresentsByUserFailure = ({ payload }) => {
-  return {
-  type: GET_PRESENTS_BY_USERID_FAILURE,
-  error: payload,
-  };
-};
+// export const getPresentsByUserFailure = ({ payload }) => {
+//   return {
+//   type: GET_PRESENTS_BY_USERID_FAILURE,
+//   error: payload,
+//   };
+// };

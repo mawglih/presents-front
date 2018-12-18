@@ -17,7 +17,14 @@ class PodarkiList extends Component {
     getPresentsStart();
     getPresentsByUserStart(user.id);
   }
-
+  componentWillReceiveProps(nextProps) {
+    const {
+     user,
+    } = this.props;
+    if(nextProps.user) {
+      getPresentsByUserStart(user.id);
+    }
+  }
   render() {
     const {
       // podarki,

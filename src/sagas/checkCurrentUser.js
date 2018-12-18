@@ -7,9 +7,8 @@ import {
 import {
   setCurrentUser,
   logoutStart,
-  // SET_CURRENT_USER,
+  GET_FAILURE,
   CHECK_USER_START,
-  CHECK_USER_FAILURE,
 } from 'actions';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from 'utils/setAuthToken';
@@ -27,7 +26,7 @@ export function* checkUserStartSaga(token) {
     }
   } catch (err) {
     yield put({
-      type: CHECK_USER_FAILURE,
+      type: GET_FAILURE,
       payload: err,
     });
   }

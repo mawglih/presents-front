@@ -5,15 +5,15 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  GET_PRESENTS_FAILURE,
+  GET_FAILURE,
+} from 'actions';
+import {
   GET_PRESENTS_START,
   GET_PRESENTS_SUCCESS,
   GET_PRESENT_BY_ID_START,
   GET_PRESENT_BY_ID_SUCCESS,
-  GET_PRESENT_BY_ID_FAILURE,
   GET_PRESENTS_BY_USERID_START,
   GET_PRESENTS_BY_USERID_SUCCESS,
-  GET_PRESENTS_BY_USERID_FAILURE,
 } from 'actions/presents';
 import { API } from 'utils/constants';
 
@@ -40,7 +40,7 @@ export function* getPresentsStartSaga() {
   } catch (error) {
     yield console.log('present saga error: ', error);
     yield put({
-      type: GET_PRESENTS_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }
@@ -70,7 +70,7 @@ export function* getPresentByUseridStartSaga({ payload: id }) {
   } catch (error) {
     yield console.log('present by userid saga error: ', error);
     yield put({
-      type: GET_PRESENTS_BY_USERID_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }
@@ -97,7 +97,7 @@ export function* getPresentByIdStartSaga({ payload: id }) {
   } catch (error) {
     yield console.log('present saga error: ', error);
     yield put({
-      type: GET_PRESENT_BY_ID_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }

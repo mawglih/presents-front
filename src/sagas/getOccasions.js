@@ -6,12 +6,13 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  GET_OCCASION_FAILURE,
+  GET_FAILURE,
+} from 'actions';
+import {
   GET_OCCASION_START,
   GET_OCCASION_SUCCESS,
   GET_OCCASION_BY_ID_START,
   GET_OCCASION_BY_ID_SUCCESS,
-  GET_OCCASION_BY_ID_FAILURE,
 } from 'actions/profile';
 import { API } from 'utils/constants';
 
@@ -36,7 +37,7 @@ export function* getOccasionStartSaga() {
   } catch (error) {
     yield console.log('occasion saga error: ', error);
     yield put({
-      type: GET_OCCASION_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }
@@ -63,7 +64,7 @@ export function* getOccasionByIdStartSaga({ payload: id }) {
   } catch (error) {
     yield console.log('occasion saga error: ', error);
     yield put({
-      type: GET_OCCASION_BY_ID_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }

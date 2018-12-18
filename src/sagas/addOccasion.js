@@ -5,10 +5,11 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  ADD_OCCASION_FAILURE,
+  GET_FAILURE,
+} from 'actions';
+import {
   ADD_OCCASION_START,
   ADD_OCCASION_SUCCESS,
-  EDIT_OCCASION_FAILURE,
   EDIT_OCCASION_START,
   EDIT_OCCASION_SUCCESS,
 } from 'actions/profile';
@@ -45,7 +46,7 @@ export function* addOccasionStartSaga({ payload }) {
     }
   } catch (error) {
     yield put({
-      type: ADD_OCCASION_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }
@@ -84,7 +85,7 @@ export function* editOccasionStartSaga({ payload }) {
     }
   } catch (error) {
     yield put({
-      type: EDIT_OCCASION_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }

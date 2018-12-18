@@ -6,10 +6,11 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  ADD_PRESENT_FAILURE,
+  GET_FAILURE,
+} from 'actions';
+import {
   ADD_PRESENT_START,
   ADD_PRESENT_SUCCESS,
-  EDIT_PRESENT_FAILURE,
   EDIT_PRESENT_START,
   EDIT_PRESENT_SUCCESS,
 } from 'actions/presents';
@@ -51,7 +52,7 @@ export function* addPresentStartSaga({ payload }) {
     }
   } catch (error) {
     yield put({
-      type: ADD_PRESENT_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }
@@ -94,7 +95,7 @@ export function* editPresentStartSaga({ payload }) {
     }
   } catch (error) {
     yield put({
-      type: EDIT_PRESENT_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }

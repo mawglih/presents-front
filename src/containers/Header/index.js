@@ -7,6 +7,8 @@ import {
 import {
   clearCurrentProfile,
 } from 'actions/profile';
+// import SVGIcon from 'components/SVGIcon';
+// import usersSVG from './SvgIcons/star_border.svg';
 import styles from './header.css';
 
  class Header extends Component {
@@ -59,9 +61,20 @@ const UserAuth = ({
 }) => (
   <Fragment>
     <div className={styles.left}>
-      <p>Welcome to Presents, dear {user.name}</p>
+      <div>Welcome to Presents, dear {user.name}</div>
     </div>
     <div className={styles.right}>
+      <div>
+        <Link to='/profiles'>
+          {/* <SVGIcon
+            icon={usersSVG}
+            className={styles.icon}
+          /> */}
+          <span className={styles.userText}>
+            Users
+          </span>
+        </Link>
+      </div>
       <div>
         <Link to='/dashboard'>
           <span>Dashboard</span>

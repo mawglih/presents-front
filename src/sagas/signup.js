@@ -5,7 +5,7 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  SIGNUP_FAILURE,
+  GET_FAILURE,
   SIGNUP_START,
   SIGNUP_SUCCESS,
 } from 'actions';
@@ -47,7 +47,7 @@ export function* signupStartSaga({ payload }) {
   } catch (error) {
     yield console.log('signup saga error: ', error);
     yield put({
-      type: SIGNUP_FAILURE,
+      type: GET_FAILURE,
       payload: error,
     });
   }
