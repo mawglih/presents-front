@@ -22,7 +22,7 @@ import styles from './header.css';
     logoutStart();
     // window.location.href = '/Signin';
     clearCurrentProfile();
-    window.location.href = '/Signin'
+    window.location.href = '/signin'
   }
 
   render() {

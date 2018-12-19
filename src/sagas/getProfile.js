@@ -2,18 +2,20 @@ import {
   call,
   put,
   takeLatest,
+  takeEvery,
 } from 'redux-saga/effects';
 import {
   GET_PROFILE_START,
   GET_PROFILE_SUCCESS,
-  // GET_PROFILE_FAILURE,
+  GET_PROFILES_START,
+  GET_PROFILES_SUCCESS,
   PROFILE_LOADING,
-  // PROFILE_NOT_FOUND,
 } from 'actions/profile';
+import {
+  GET_FAILURE,
+} from 'actions';
  import axios from 'axios';
  import { API } from 'utils/constants';
-
-const URL = `${API}profile/`;
 
  export function* getProfileStartSaga() {
    yield put({
@@ -25,7 +27,7 @@ const URL = `${API}profile/`;
        status,
      } = yield call(axios, {
        method: 'get',
-       url: URL,
+       url: `${API}profile/`,
      });
      if (status >=200 && status < 300) {
       yield console.log('profile is in saga: ', data);
@@ -50,8 +52,39 @@ const URL = `${API}profile/`;
    }
  }
 
+ export function* getProfilesStartSaga() {
+  yield put({
+    type: PROFILE_LOADING,
+  });
+  try {
+    const {
+      data,
+      status,
+    } = yield call(axios, {
+      method: 'get',
+      url: `${API}profile/all`,
+    });
+    if (status >=200 && status < 300) {
+     yield console.log('profiles is in saga: ', data);
+     yield put({
+       type: GET_PROFILES_SUCCESS,
+       payload: data,
+     });
+    } else {
+      throw data;
+    }
+  } catch (err) {
+    yield console.log('profiles saga error: ', err);
+    yield put({
+      type: GET_FAILURE,
+      payload: err,
+    });
+  }
+}
+
  export function* getProfileSaga() {
    yield takeLatest(GET_PROFILE_START, getProfileStartSaga);
+   yield takeEvery(GET_PROFILES_START, getProfilesStartSaga);
  }
 
  export default [

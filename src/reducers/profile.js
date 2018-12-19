@@ -1,5 +1,6 @@
 import {
   GET_PROFILE_SUCCESS,
+  GET_PROFILES_SUCCESS,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
 } from 'actions/profile';
@@ -22,12 +23,18 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         current: payload,
         loading: false,
-      }
+      };
+    case GET_PROFILES_SUCCESS:
+      return {
+        ...state,
+        profiles: [...payload, ...state.profiles],
+        loading: false,
+      };
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
         current: null,
-      }
+      };
     default:
       return state;
   }
