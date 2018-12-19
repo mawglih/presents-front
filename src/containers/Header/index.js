@@ -20,7 +20,6 @@ import styles from './header.css';
       clearCurrentProfile,
     } = this.props;
     logoutStart();
-    // window.location.href = '/Signin';
     clearCurrentProfile();
     window.location.href = '/signin'
   }

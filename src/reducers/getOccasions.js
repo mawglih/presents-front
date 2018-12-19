@@ -1,6 +1,7 @@
 import {
   GET_OCCASION_SUCCESS,
   GET_OCCASION_BY_ID_SUCCESS,
+  CLEAR_CURRENT_PROFILE,
 } from 'actions/profile';
 
 const INITIAL_STATE = {
@@ -22,6 +23,13 @@ const GetOccasionReducer = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         occasion: payload,
         loading: false,
+      };
+    case CLEAR_CURRENT_PROFILE:
+      return {
+        ...state,
+        occasions: [],
+        occasion: {},
+        loading: true,
       };
     default:
       return state;

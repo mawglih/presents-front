@@ -4,6 +4,9 @@ import {
   GET_PRESENTS_BY_USERID_SUCCESS,
   ADD_PRESENT_SUCCESS,
 } from 'actions/presents';
+import {
+  CLEAR_CURRENT_PROFILE,
+} from 'actions/profile';
 
 const INITIAL_STATE = {
   presents: [],
@@ -25,6 +28,12 @@ const GetPresentsReducer = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         presentsByUser: [...payload],
         loading: false,
+      };
+    case CLEAR_CURRENT_PROFILE:
+      return {
+        ...state,
+        presentsByUser: [],
+        loading: true,
       };
     case GET_PRESENT_BY_ID_SUCCESS:
       return {
