@@ -10,7 +10,6 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const CHECK_USER_START = 'CHECK_USER_START';
 export const CHECK_USER_SUCCESS = 'CHECK_USER_SUCCESS';
-// export const CHECK_USER_FAILURE = 'CHECK_USER_FAILURE';
 export const GET_FAILURE = 'GET_FAILURE';
 
 export const signinStart = (payload) => {
@@ -27,13 +26,6 @@ export const signinSuccess = ({ payload }) => {
     payload,
   };
 };
-
-// export const signinFailure = ({ payload }) => {
-//   return{
-//     type: SIGNIN_FAILURE,
-//     error: payload,
-//   };
-// };
 
 export const signupStart = (payload) => {
   console.log('action signup paylod: ', payload);

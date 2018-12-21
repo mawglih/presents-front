@@ -1,6 +1,7 @@
 import {
   GET_PROFILE_SUCCESS,
   GET_PROFILES_SUCCESS,
+  GET_PROFILE_BY_HANDLE_SUCCESS,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
 } from 'actions/profile';
@@ -24,6 +25,12 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         current: payload,
         loading: false,
       };
+    case GET_PROFILE_BY_HANDLE_SUCCESS:
+      return {
+        ...state,
+        current: payload,
+        loading: false,
+      };
     case GET_PROFILES_SUCCESS:
       return {
         ...state,
@@ -34,6 +41,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         current: null,
+        profiles: [],
       };
     default:
       return state;

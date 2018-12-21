@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { PulseLoader } from 'react-spinners';
 import {
   getProfilesStart,
+  clearCurrentProfile,
 } from 'actions/profile';
 import {
   getPresentsByUserStart,
@@ -18,11 +19,18 @@ class Profiles extends Component {
     } = this.props;
     getProfilesStart();
   }
+  componentWillUnmount() {
+    const {
+      clearCurrentProfile
+    } = this.props;
+    clearCurrentProfile();
+    
+  }
 
   render() {
     const {
+      loading,
       profiles,
-      loading
     } = this.props.profile;
     let ProfileItems;
     if(profiles === null || loading) {
@@ -62,4 +70,8 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 })
 
-export default connect(mapStateToProps, { getProfilesStart, getPresentsByUserStart })(Profiles)
+export default connect(mapStateToProps, {
+  getProfilesStart,
+  getPresentsByUserStart,
+  clearCurrentProfile,
+})(Profiles)

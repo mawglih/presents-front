@@ -1,5 +1,6 @@
 import React from 'react';
 import NumberOfPresents from 'containers/NumberOfPresents';
+import { Link } from 'react-router-dom';
 import styles from './profiles.css';
 
 const ProfileItem = ({
@@ -25,7 +26,9 @@ const ProfileItem = ({
           <img src={avatar} alt={handle} />
         </div>
         <div className={styles.handle}>
-          <h2>{handle}</h2>
+          <Link to={`/user/${_id}`}>
+            <h2>{handle}</h2>
+          </Link>
         </div>
       </div>
       <div className={styles.middle}>
