@@ -21,7 +21,7 @@ export function* deleteOccasionStartSaga({ payload: id }) {
       status,
     } = yield call(axios,{
       method: 'delete',
-      url: `${API}profile/occasions/`,
+      url: `${API}profile/occasions/${id}`,
     });
     if (status >= 200 && status < 300) {
       yield put({

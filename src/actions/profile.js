@@ -129,7 +129,7 @@ export const getOccasionByIdSuccess = ({ payload }) => {
   };
 };
 
-export const deleteOccasionStart = (payload ) => {
+export const deleteOccasionStart = (payload) => {
   return {
     type: DELETE_OCCASION_START,
     payload,

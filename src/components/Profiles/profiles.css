@@ -1,0 +1,23 @@
+.image {
+    border-radius: 50%;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content {
+    color: red;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.details {
+    color: blue;
+    padding: 20px;
+    margin-left: 20px;
+}

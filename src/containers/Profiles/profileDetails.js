@@ -7,6 +7,9 @@ import {
   getPresentsByUserStart,
 } from 'actions/presents';
 import PresentsPublic from './presentsPublic';
+import ProfileHeader from 'components/Profiles/ProfileHeader';
+import ProfileDetails from 'components/Profiles/ProfileDetails';
+import ProfileOccasions from 'components/Profiles/ProfileOccasions';
 import styles from './profiles.css';
 
 export class profileDetails extends Component {
@@ -24,23 +27,40 @@ export class profileDetails extends Component {
   render() {
     const {
       podarki,
-      // current,
+      current,
+      loading,
     } = this.props;
 
     return (
       <div className={styles.container}>
         <h1>
-          {'Hello'}
+          {/* {`Hello dear ${handle}`} */}
         </h1>
         <div className={styles.contentHor}>
           <div className={styles.profile}>
-            <div>Profile Header</div>          
-            <div>Profile Details</div>
-            <div>List of Occasions</div>
+            <div>
+              <ProfileHeader
+                profile={current}
+                loading={loading}
+              />
+            </div>          
+            <div>
+              <ProfileDetails
+                profile={current}
+                loading={loading}
+              />
+            </div>
+            <div>
+              <ProfileOccasions
+                profile={current}
+                loading={loading}
+              />
+            </div>
           </div>
           <div className={styles.presents}>
-
-            <PresentsPublic  presents={podarki}/>
+            <PresentsPublic
+              presents={podarki}
+            />
           </div>
         </div>
       </div>
@@ -50,6 +70,7 @@ export class profileDetails extends Component {
 
 const mapStateToProps = (state) => ({
   current: state.profile.current,
+  loading: state.profile.loading,
   podarki: state.getPresents,
 });
 

@@ -8,7 +8,6 @@ const Occasion = ({
   title,
   description,
   date,
-  handleClick,
 }) => {
   return (
     <div className={styles.container}>
@@ -25,12 +24,13 @@ const Occasion = ({
           <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
       </div>
-      <button
-        className={styles.button}
-        onClick={() => handleClick(id)}
-      >
-        Delete
-      </button>
+      <div className={styles.buttonDiv}>
+        <Link to={`/deleteoccasion/${id}`}>
+          <button className={styles.button}>
+            Delete
+          </button>
+        </Link>
+      </div>
     </div>
   )
 }

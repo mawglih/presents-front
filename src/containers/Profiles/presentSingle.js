@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import styles from './profiles.css';
@@ -12,6 +12,11 @@ export default ({
   occasion,
   date,
   id,
+  onPresentSelect,
+  onPresentDeselect,
+  onPresentBuy,
+  userid,
+  user,
 }) => (
   <div className={styles.containerSmall}>
     <div className={styles.content}>
@@ -46,8 +51,31 @@ export default ({
       <div className={styles.price}>
         <span>{'$ '}</span><span>{price}</span>
       </div>
-      <div><button>Select this present</button></div>
-      <div><button>Buy this present</button></div>
+      {user.id !== userid ? 
+        (<Fragment>
+          <div>
+            <button
+              onClick={onPresentSelect}
+            >
+              {'Select this present'}
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={onPresentDeselect}
+            >
+              {'Deselect this present'}
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={onPresentBuy}
+            >
+              {'Buy this present'}
+            </button>
+          </div>
+        </Fragment>) : null
+      }
     </div>
   </div>
 );

@@ -13,6 +13,7 @@ class PodarkiPublic extends Component {
   render() {
     const {
       podarkiUser,
+      user,
     } = this.props;
     console.log('podarki for userid: ', podarkiUser);
     return(
@@ -28,6 +29,8 @@ class PodarkiPublic extends Component {
               occasion={item.occasion}
               url={item.url}
               price={item.price}
+              userid={item.user._id}
+              user={user}
               // date={getItemDate(item.occasion)}
             />
           )) 
@@ -38,6 +41,7 @@ class PodarkiPublic extends Component {
 }
 const mapStateToProps = (state) => ({
   podarkiUser: state.getPresents.presentsByUser,
+  user: state.signin.user,
 });
 
 export default connect(mapStateToProps, {

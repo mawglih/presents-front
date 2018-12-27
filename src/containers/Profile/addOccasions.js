@@ -8,7 +8,7 @@ import styles from './profile.css';
 class AddOccasions extends Component {
   state= {
     title: '',
-    at: null,
+    at: '',
     description: '',
     special: false,
     errors: {},

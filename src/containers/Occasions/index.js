@@ -23,6 +23,7 @@ class Occasions extends Component {
       deleteOccasionStart,
     } = this.props;
     deleteOccasionStart(id);
+    console.log('occasions delete in component id: ', id);
     if(Object.keys(error).length === 0) {
       history.push('/occasions');
     }
@@ -52,7 +53,7 @@ class Occasions extends Component {
             title={item.title}
             description={item.description}
             date={item.at}
-            handleClick={this.handleDelete}
+            handleClick={() => this.handleDelete(item._id)}
           />
         )}));
     }
